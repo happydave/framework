@@ -14,6 +14,8 @@ Produce planning and feature specifications with enough clear, precise, descript
 - Headings for structure (# Phase, ## Step)
 - Bullets for lists; numbered for sequences
 - Strong descriptive text of expected behavior, data flows, edge cases, invariants — enough to eliminate ambiguity for implementation
+- Invariant section must contain: each invariant provably true given fundamental constraints, no unstated assumptions or dependencies, no implicit contradictions
+- This framework assumes invariants will be scrutinized for these qualities during the Critically Assess step
 
 ## Document Storage & Naming
 - All planning specifications live in the `specs/` folder at the root of the project
@@ -30,21 +32,30 @@ Produce planning and feature specifications with enough clear, precise, descript
 When a feature requires precise, unambiguous descriptive requirements for implementation, copy and adapt the template from:
 `template/Feature.spec`
 
-Use only the sections needed; skip others when not relevant.
+The template includes these required sections (all must be completed when relevant to the feature):
+- **Objective** — One-sentence goal description
+- **Invariants** — Non-negotiable truths about system behavior or constraints (with optional rationale)
+- **Functional Requirements** — SHALL statements with trigger → behavior → outcome structure, organized by:
+  - User-Visible Behaviors
+  - Data Requirements
+  - Security & Privacy (if applicable)
+- **Acceptance Scenarios** — Gherkin-style scenarios describing what constitutes sufficient completeness for human approval
+- **Edge Cases & Error Handling** — Required documentation of significant exception conditions and expected responses
+- **Non-Functional Requirements** — Performance, scalability, reliability, and compatibility constraints
+- **Data Model & State Changes** — Description of affected data entities and state transitions (no implementation details)
+- **Known Constraints & Assumptions** — Explicit documentation of limiting conditions and verified assumptions
+- **Validation Approach** — Descriptive methods for verifying correctness without code
+- **Completion Checklist** — Self-check before marking Complete
+
+Use all sections as needed; every section that applies to the feature must be completed.
 
 ## General Guidelines
 
-### Go Tooling
-- Ask the human explicitly: "What should the Go module path be? ( e.g., example.com/rimworld-mod-manager )"
-- Record the confirmed module path in this specification (add a line under "Programming Language(s)": "Go module path: [path]")
-- Before running `go mod init`:
-  - Check if a go.mod file already exists in the project root. If yes, do not run `go mod init` again; use the existing module.
-  - If no go.mod exists, run `go mod init [confirmed-path]`
-- Never create nested Go modules (only one go.mod at project root).
-- Do not validate the module name format beyond basic sanity (human is responsible for correctness).
-- All Go commands (go mod init, go build, go test, etc.) must be run with the current working directory set to the project root folder (where go.mod lives / will live).
-- Before any Go tooling: verify the current directory is the individual project folder (e.g. rimworld-mod-manager/), not the parent projects/ workspace.
-- When using VS Code multi-root workspace opened at projects/, ensure terminal or tasks are configured to cd into the specific project folder before running Go commands.
+### Language-Specific Guidelines
+- When this framework is used with a specific programming language, guidelines from `language/[language].spec` apply when present.
+
+### Cross-Feature Relationships
+- Cross-feature dependencies and ordering principles are introduced when they become ambiguity sources; these may be deferred if not genuinely necessary for understanding individual features
 
 ## Project Workflow
 
@@ -56,14 +67,15 @@ Use only the sections needed; skip others when not relevant.
 **Process**:
 
 1. **Assess** — review problem domain, stakeholder needs, known constraints
-2. **Research & Elaborate** — investigate technical feasibility, resource needs, risks, non-functional requirements; draft high-level invariants and goals
+2. **Research & Elaborate** — investigate technical feasibility, resource needs, risks, non-functional requirements; draft high-level invariants and goals. This step is intended as deep scrutiny to ensure each feature spec has sufficient detail to implement confidently and correctly.
 3. **Create Spec** — define project goals, key features, backlog, phase boundaries, and scope exclusions using descriptive language
 4. **Test (Descriptive)** — describe validation approaches for feasibility and scope (e.g., thought experiments, constraint checks)
 5. **Critically Assess** — check for gaps, contradictions, over- or under-scoping
+   - Invariants are provably true, contain no unstated assumptions, and don't implicitly contradict other invariants
 
 - Repeat steps 1–5 as needed until the Critical Assess step confirms the spec is unambiguous and complete.
+- This process is conducted closely with a human; if scrutiny reveals intractable ambiguity, the human should determine whether to revise scope, simplify specs, or defer the feature.
 - Limit to a maximum of 3 total cycles (initial + up to 2 repeats).
-- If still not ready after 3 cycles, stop and consult human.
 
 **After refinement complete (00_Project.spec ready):**
 - Record any major decisions or adjustments in the relevant spec(s)
@@ -84,13 +96,24 @@ List significant problems, research gaps, unnecessary resource usage, extra iter
 
 1. **Assess** — review high-level scope from 00_Project.spec, current knowledge gaps, constraints
 2. **Research & Elaborate** — investigate domain details, data flows, security/privacy needs, performance invariants; draft/refine descriptive outcomes (no code)
-3. **Create Spec** — write or update Functional Requirements (SHALL statements), Invariants, Edge Cases, and Acceptance Scenarios using the Feature-Spec-Template
+3. **Create Spec**
+  - Complete all relevant sections from the Feature-Spec-Template:
+    - Objective (one-sentence goal)
+    - Invariants (non-negotiable truths with optional rationale)
+    - Functional Requirements (SHALL statements organized by user-visible behaviors, data requirements, security/privacy)
+    - Acceptance Scenarios (Gherkin-style scenarios for human approval criteria)
+    - Edge Cases & Error Handling (significant exception conditions and expected responses)
+    - Non-Functional Requirements (performance, scalability, reliability, compatibility constraints)
+    - Data Model & State Changes (affected entities and transitions without implementation details)
+    - Known Constraints & Assumptions (limiting conditions and verified assumptions)
+    - Validation Approach (descriptive methods for verifying correctness without code)
+  - Acceptance scenarios should focus primarily on what constitutes sufficient completeness for human acceptance of the current spec state, rather than an exhaustive catalog of test cases.
 4. **Test (Descriptive)** — define verification approaches: describe test cases, expected behaviors, failure modes (still no code/tests written)
 5. **Critically Assess** — check for ambiguity, completeness, contradictions
 
 - Repeat steps 1–5 as needed until the Critical Assess step confirms the spec is unambiguous and complete.
+- This process is conducted closely with a human; if scrutiny reveals intractable ambiguity, the human should determine whether to revise scope, simplify specs, or defer the feature.
 - Limit to a maximum of 3 total cycles (initial + up to 2 repeats).
-- If still not ready after 3 cycles, stop and consult human.
 
 **After refinement complete (feature spec ready):**
 - Record any major decisions or adjustments in the relevant spec(s)
