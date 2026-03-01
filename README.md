@@ -6,6 +6,10 @@ This framework provides a structured approach for documenting project plans and 
 
 The goal is to produce specifications so detailed and clear that an AI (or another human) can implement features correctly without guesswork or misalignment.
 
+## About
+
+Important: This repository contains meta-instructions.  It is a guide for creating specifications, not a finished software product. We are currently focusing on refining this framework to ensure AI agents can understand and implement features correctly from the outset. Think of it like building the instruction manual before assembling the machine. At this stage, we are concerned with defining a consistent, unambiguous process - not specific feature requirements yet.
+
 ## Document Structure
 
 This framework includes templates and guidelines for creating specification documents:

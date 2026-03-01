@@ -4,6 +4,8 @@
 Structured approach for deep human-AI collaboration on software projects.  
 Human remains deeply involved throughout planning.  
 
+Note: This document describes how to build specifications for an AI agent, not a finished product other than those specifications.
+
 ## Intent
 Produce planning and feature specifications with enough clear, precise, descriptive detail that an AI can implement the product correctly on the first attempt with minimal guesswork and no risk of incorrect features or behavior.
 
@@ -88,6 +90,7 @@ List significant problems, research gaps, unnecessary resource usage, extra iter
 **Status**: [Pending/Complete]
 
 ### Phase 1+: Feature Refinement
+
 **Product**: Feature specification (specs/xx_Feature.spec)
 
 **Scope**: Deepen and finalize detailed descriptive specifications for each feature identified in `00_Project.spec`. Preserve high-level scope and boundaries; add precision through research, invariants, edge cases, and scenarios only. No implementation or code.
@@ -127,6 +130,7 @@ List significant problems, research gaps, extra iterations, unplanned human inte
 **Status**: [Pending/Complete] per feature specification
 
 ### Final Phase: Retrospective
+
 **Product**: Retrospective document (`specs/99_Retrospective.spec`)
 
 **Scope**: Holistic review of process, collaboration, output quality, and framework effectiveness
