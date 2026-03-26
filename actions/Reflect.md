@@ -4,8 +4,6 @@
 
 After implementation completes, capture what happened so the process, documentation, and tooling improve over time. This is not a narrative — it is a structured record that feeds concrete changes back into the planning framework, feature templates, guidelines, and implementation prompts.
 
-The reflection should be written by the AI that performed the implementation, reviewed by the human, and stored alongside the other ticket artifacts.
-
 ## When to Reflect
 
 At the end of every implementation, or when implementation is interrupted and will be resumed in a new session.

@@ -57,13 +57,13 @@ When documenting an actual project's plans in your consumer repository:
    Follow the feature plan to build the feature incrementally, maintaining an implementation log as you go.  
    See the framework's `actions/Implement.md`.
 
-4. **Reflect**  
-   After implementation, capture what went well, what didn't, and concrete recommendations for improving the process, plans, or tooling.  
-   See the framework's `actions/Reflect.md`.
-
-5. **Document**  
+4. **Document**  
    Verify that the project's documentation (README, code comments, help text, etc.) is accurate and consistent with the changes just made.  
    See the framework's `actions/Document.md`.
+
+5. **Reflect**  
+   After implementation, capture what went well, what didn't, and concrete recommendations for improving the process, plans, or tooling.  
+   See the framework's `actions/Reflect.md`.
 
 6. **Complete**  
    Move the ticket folder from `docs/pending/` to `docs/completed/`.

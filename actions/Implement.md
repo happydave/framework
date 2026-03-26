@@ -55,13 +55,13 @@ When all features are implemented:
 - Confirm the project is launchable/runnable as described in the planning documents
 - Update the implementation log with final status
 
-### 5. Reflect
+### 5. Document
+
+Follow the procedure in `actions/Document.md` to verify that the project's documentation (README, code comments, help text, etc.) is accurate and consistent with the changes just made.
+
+### 6. Reflect
 
 Follow the procedure in `actions/Reflect.md` to write a reflective assessment as `reflect.md` in the ticket's folder. This captures what went well, what could have gone better, and concrete recommendations for improving the planning documents, framework, or tooling.
-
-### 6. Complete
-
-Move the ticket folder from `docs/pending/` to `docs/completed/`.
 
 ## Guidance
 
