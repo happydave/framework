@@ -2,7 +2,7 @@
 
 ## Purpose of a Feature Plan
 
-Each feature plan document (docs/templates/feature.md or similar) must contain enough precise, unambiguous description so an AI can produce complete, correct, production-ready code for that feature on the first attempt.
+Each feature plan document (templates/feature.md or similar) must contain enough precise, unambiguous description so an AI can produce complete, correct, production-ready code for that feature on the first attempt.
 
 The document exists to communicate desired **outcomes**, **non-negotiable rules**, and **verifiable success criteria** — not to dictate internal implementation choices unless those choices are essential to the outcome.
 

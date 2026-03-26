@@ -10,7 +10,7 @@ The implementation prompt lives in the project repository and specifies what to 
 
 - A complete set of planning documents (produced by the Plan action)
 - An implementation prompt in the project repo specifying reading order, implementation order, constraints, and exclusions
-- Applicable framework guidelines (e.g., `docs/guidelines/Docker.md`, language-specific guidelines) identified in the implementation prompt or feature plans
+- Applicable framework guidelines (e.g., `guidelines/Docker.md`, language-specific guidelines) identified in the implementation prompt or feature plans
 
 ## Procedure
 
@@ -57,7 +57,7 @@ When all features are implemented:
 
 ### 5. Reflect
 
-Follow the procedure in `docs/actions/Reflect.md` to write a reflective assessment as `reflect.md` in the ticket's folder. This captures what went well, what could have gone better, and concrete recommendations for improving the planning documents, framework, or tooling.
+Follow the procedure in `actions/Reflect.md` to write a reflective assessment as `reflect.md` in the ticket's folder. This captures what went well, what could have gone better, and concrete recommendations for improving the planning documents, framework, or tooling.
 
 ### 6. Complete
 

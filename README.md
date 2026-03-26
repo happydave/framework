@@ -15,14 +15,14 @@ Important: This repository contains meta-instructions. It is a guide for creatin
 This framework includes guidelines and core documents for creating plans and descriptions:
 
 - **This README** — Overview of the entire system
-- `docs/actions/Ticket.md` — Lightweight intake for work items
-- `docs/actions/Plan.md` — Complete workflow instructions and methodology
-- `docs/actions/Implement.md` — Implementation process (incremental implementation, implementation log)
-- `docs/actions/Reflect.md` — Post-implementation reflection and recommendations
-- `docs/actions/Document.md` — Verify documentation is accurate and consistent after changes
-- `docs/templates/feature.md` — Instructions for writing lean, outcome-oriented feature plans
-- `docs/guidelines/Go.md` — Go-specific guidelines (module setup, tooling, conventions)
-- `docs/guidelines/Docker.md` — Container-first build environment guidelines
+- `actions/Ticket.md` — Lightweight intake for work items
+- `actions/Plan.md` — Complete workflow instructions and methodology
+- `actions/Implement.md` — Implementation process (incremental implementation, implementation log)
+- `actions/Reflect.md` — Post-implementation reflection and recommendations
+- `actions/Document.md` — Verify documentation is accurate and consistent after changes
+- `templates/feature.md` — Instructions for writing lean, outcome-oriented feature plans
+- `guidelines/Go.md` — Go-specific guidelines (module setup, tooling, conventions)
+- `guidelines/Docker.md` — Container-first build environment guidelines
 
 ### Consumer Project Structure
 
@@ -37,7 +37,7 @@ When using this framework in a project, the project repository contains:
 
 Important: This repository contains the framework itself. It is intended to be referenced from inside other projects where the work is actually being done. 
 
-The `docs/templates/` and `docs/guidelines/` folders live in this framework repository. 
+The `templates/` and `guidelines/` folders live in this framework repository. 
 
 When you start a new project (the consumer repository), you should scaffold `docs/pending/` and `docs/completed/` directories there to hold the active execution state.
 
@@ -45,16 +45,28 @@ When documenting an actual project's plans in your consumer repository:
 
 1. **Create tickets for work items**  
    For each feature or task, create a folder in `docs/pending/` with a `ticket.md` inside.  
-   Follow the guidance in the framework's `docs/actions/Ticket.md`.
+   Follow the guidance in the framework's `actions/Ticket.md`.
 
-2. **Create feature plans**  
+2. **Plan**  
    For each ticket that needs planning, add `plan.md` to the ticket's folder.  
-   Follow the guidance in the framework's `docs/templates/feature.md` to include only what is necessary: objective, invariants, behaviors & verifications, edge cases, explicit AI freedom, etc.  
-   Avoid code; describe outcomes and constraints clearly while granting freedom on non-critical decisions.
+   Follow the guidance in the framework's `templates/feature.md` .
+   Refine until the Critical Assess step confirms the document is unambiguous and complete.  
+   See the framework's `actions/Plan.md`.
 
-3. **Follow the workflow**  
-   Research & elaborate → draft plan → test descriptively → critically assess.  
-   Refine until the Critical Assess step confirms the document is unambiguous and complete.
+3. **Implement**  
+   Follow the feature plan to build the feature incrementally, maintaining an implementation log as you go.  
+   See the framework's `actions/Implement.md`.
+
+4. **Reflect**  
+   After implementation, capture what went well, what didn't, and concrete recommendations for improving the process, plans, or tooling.  
+   See the framework's `actions/Reflect.md`.
+
+5. **Document**  
+   Verify that the project's documentation (README, code comments, help text, etc.) is accurate and consistent with the changes just made.  
+   See the framework's `actions/Document.md`.
+
+6. **Complete**  
+   Move the ticket folder from `docs/pending/` to `docs/completed/`.
 
 ## Plan Style
 
@@ -64,7 +76,7 @@ When documenting an actual project's plans in your consumer repository:
 - Concise, objective, strictly descriptive
 - Minimal rhetorical flourish
 - No code blocks unless explaining plan format
-- Explicitly grant AI freedom in non-critical areas (see `docs/templates/feature.md`)
+- Explicitly grant AI freedom in non-critical areas (see `templates/feature.md`)
 
 ## Expected Output Quality
 

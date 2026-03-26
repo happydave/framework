@@ -21,7 +21,7 @@ Produce feature plans with enough clear, precise, descriptive detail that an AI 
 - Bullets for lists; numbered for sequences
 - Strong descriptive text of expected behavior, data flows, edge cases, invariants — enough to eliminate ambiguity for implementation
 - Invariant section must contain: each invariant provably true given fundamental constraints, no unstated assumptions or dependencies, no implicit contradictions
-- Explicitly grant AI freedom in non-critical decisions (see docs/templates/feature.md)
+- Explicitly grant AI freedom in non-critical decisions (see templates/feature.md)
 - This framework assumes invariants will be scrutinized for these qualities during the Critically Assess step
 
 ## Document Storage & Naming
@@ -33,17 +33,9 @@ Feature plans live inside the ticket folder that originated them. When a ticket 
 
 The presence of `plan.md` in a ticket folder indicates the ticket has been planned. The absence of `plan.md` indicates it has not.
 
-## Completion Statuses
-
-These statuses track the readiness of the plan document itself, not the ticket's lifecycle position (which is determined by its folder location in `docs/pending/` or `docs/completed/`).
-
-- **Pending** — the plan is not yet started, or is in progress and not ready for implementation
-- **Complete** — the plan is finished, reviewed, and approved by a human; ready for implementation
-- Update status only on completion (no "In Progress")
-
 ## Feature Plan Instructions
 
-For each feature, create `plan.md` in the ticket's folder following the guidance in `docs/templates/feature.md`.
+For each feature, create `plan.md` in the ticket's folder following the guidance in `templates/feature.md`.
 
 That file provides:
 - Core principles (outcome focus, minimal constraints, explicit AI freedom)
@@ -54,8 +46,8 @@ That file provides:
 
 ### Language-Specific Guidelines
 
-- When this framework is used with a specific programming language, guidelines from docs/guidelines/[language].md apply when present.
-- For Go projects: follow docs/guidelines/Go.md (module setup, tooling, conventions, invariants).
+- When this framework is used with a specific programming language, guidelines from guidelines/[language].md apply when present.
+- For Go projects: follow guidelines/Go.md (module setup, tooling, conventions, invariants).
 
 ### Cross-Feature Relationships
 
@@ -85,19 +77,16 @@ These are not sequential phases — they are aspects of planning that apply thro
 
 ### Writing the Plan
 
-Follow the Required Content & Guidance in `docs/templates/feature.md`. Complete only sections genuinely needed for unambiguous implementation. Acceptance scenarios should focus on what constitutes sufficient completeness for human acceptance, rather than an exhaustive catalog of test cases.
+Follow the Required Content & Guidance in `templates/feature.md`. Complete only sections genuinely needed for unambiguous implementation. Acceptance scenarios should focus on what constitutes sufficient completeness for human acceptance, rather than an exhaustive catalog of test cases.
 
 This process is conducted closely with a human. If scrutiny reveals intractable ambiguity, the human should determine whether to revise scope, simplify descriptions, or defer the feature.
 
 **After refinement complete (feature plan ready):**
 - Record any major decisions or adjustments in the plan
-- Mark as **Complete**
 - Proceed to implementation via the Implement action
 
-**Mini-Retrospective**  
-List significant problems, research gaps, extra iterations, unplanned human interventions, or items warranting framework changes.
-
-**Status**: [Pending/Complete] per feature plan
+**Planning Mini-Retrospective**  
+A brief, lightweight note on the planning process itself — not a full reflection (that happens after implementation via the Reflect action). List significant problems, research gaps, extra iterations, unplanned human interventions, or items warranting framework changes. A few bullet points is sufficient.
 
 ## Unplanned / Out-of-Scope Work
 
@@ -109,5 +98,5 @@ List explicitly in feature plans if relevant:
 ## Notes
 - Human deeply involved in planning and review
 - Planning documents must be unambiguous and detailed enough for correct first-pass implementation by AI
-- Use `docs/templates/feature.md` as the canonical guide for feature plans to keep them lean and outcome-oriented
+- Use `templates/feature.md` as the canonical guide for feature plans to keep them lean and outcome-oriented
 - Refine framework iteratively via phase mini-retrospectives

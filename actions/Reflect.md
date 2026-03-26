@@ -43,8 +43,8 @@ Focus on issues that originated from the process, documentation, or tooling — 
 For each significant issue, propose a concrete change to prevent or reduce it in future implementations. Recommendations should target specific documents or artifacts:
 
 - Feature plans (e.g., add a missing invariant to feature 08)
-- Framework templates (e.g., add a section to `docs/templates/feature.md`)
-- Framework guidelines (e.g., update `docs/guidelines/Docker.md`)
+- Framework templates (e.g., add a section to `templates/feature.md`)
+- Framework guidelines (e.g., update `guidelines/Docker.md`)
 - Implementation prompts (e.g., add an instruction to compile incrementally)
 - Makefile or tooling (e.g., add a pre-flight check)
 
@@ -59,4 +59,4 @@ The human reviews the reflection and decides which recommendations to act on. No
 - Keep entries concise and factual.
 - Separate problems caused by documentation gaps from problems caused by implementation errors. Both are worth recording, but they have different fixes.
 - If the implementation was interrupted and resumed, note where the break occurred and whether the implementation log was sufficient to continue.
-- The reflection is part of the implementation log, not a separate document.
+- The reflection is a companion to the implementation log — it exists to feed improvements back into the process, not to stand alone.
