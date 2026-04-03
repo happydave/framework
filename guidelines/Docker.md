@@ -101,3 +101,7 @@ The AI has full discretion over:
 ## Usage
 Reference this file in feature plans when the project uses Docker-based builds.
 Follow these rules automatically unless a feature plan explicitly overrides them.
+
+## See Also
+- `guidelines/Go.md` — Go-specific conventions (exempted from Docker builds by default)
+- `guidelines/TypeScript.md` — TypeScript/npm conventions (uses Docker builds; references this document for build environment setup)

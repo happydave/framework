@@ -22,8 +22,10 @@ This framework includes guidelines and core documents for creating plans and des
 - `actions/Implement.md` — Implementation process (incremental implementation, implementation log)
 - `actions/Reflect.md` — Post-implementation reflection and recommendations
 - `actions/Document.md` — Verify documentation is accurate and consistent after changes
+- `actions/Review.md` — Cooperative human+AI merge request review
 - `templates/feature.md` — Instructions for writing lean, outcome-oriented feature plans
 - `guidelines/Go.md` — Go-specific guidelines (module setup, tooling, conventions)
+- `guidelines/TypeScript.md` — TypeScript/npm guidelines (Docker-based builds, VS Code extension conventions)
 - `guidelines/Docker.md` — Container-first build environment guidelines
 
 ### Consumer Project Structure
@@ -67,15 +69,19 @@ When documenting an actual project's plans in your consumer repository:
    Follow the feature plan to build the feature incrementally, maintaining an implementation log as you go.  
    See the framework's `actions/Implement.md`.
 
-6. **Document**  
+6. **Review**  
+   When the change is ready (or ready for early feedback), submit a merge request and conduct a cooperative human+AI review. The AI scans the full diff for correctness, safety, consistency, and mechanical issues; the human provides intent context, resolves uncertain findings, and delivers the verdict.  
+   See the framework's `actions/Review.md`.
+
+7. **Document**  
    Verify that the project's documentation (README, code comments, help text, etc.) is accurate and consistent with the changes just made.  
    See the framework's `actions/Document.md`.
 
-7. **Reflect**  
+8. **Reflect**  
    After implementation, capture what went well, what didn't, and concrete recommendations for improving the process, plans, or tooling.  
    See the framework's `actions/Reflect.md`.
 
-8. **Complete**  
+9. **Complete**  
    Move the ticket folder from `docs/pending/` to `docs/completed/`.
 
 ## Plan Style
