@@ -80,6 +80,7 @@ Include when relevant, omit when not:
 ## Guidance
 
 - State the answer early. The Summary section should give the reader the essential finding without requiring them to read the full document. Details follow for those who need them.
+- Never fabricate context not present in the source data. If a detail — a channel name, a username, a timestamp, a service name — was not returned by an observability tool or explicitly stated by the human, do not invent it. If the detail matters for the document (e.g. "reported via Slack"), record only what is known and leave the rest blank or marked as unknown. A plausible-sounding fabrication is worse than an explicit gap.
 - Be specific. "Several services are making bad calls" is less useful than "portal-nebo accounts for ~75% of panelId=0 traffic (1,075 error traces in 6 hours), followed by messagechannels (178) and notificationhandler (75)."
 - Separate evidence from interpretation. State what the data shows, then state what you conclude from it — clearly distinguished.
 - Quantify where possible. Counts, rates, percentages, and time windows make findings concrete and actionable. Relative comparisons ("most of the errors" vs "75% of the errors") lose information.
