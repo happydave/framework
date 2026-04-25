@@ -48,7 +48,7 @@ Infrastructure and scaffold (build configuration, project structure, dependency 
 
 ### 4. Maintain an Implementation Log
 
-Create `implementation.md` in the ticket's folder (e.g., `docs/pending/07-investigate-pipeline-jobs/implementation.md`). Update it as work progresses. The log should contain:
+Create `implementation.md` in the ticket folder (e.g., `docs/pending/07-investigate-pipeline-jobs/implementation.md`). Update it as work progresses. The log should contain:
 
 - **Work completed** — which features have been implemented, in what order, and their current state
 - **Decisions made** — implementation choices where the planning documents left discretion (AI freedom sections), and why the choice was made

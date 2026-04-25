@@ -1,12 +1,12 @@
-# Review
+# Code Review
 
 ## Intent
 
 Evaluate a merge request thoroughly and produce clear, actionable feedback. The output is a structured set of observations — concerns, questions, and approvals — that helps the author understand what needs to change and why, or confirms the change is ready to merge.
 
-Review is a cooperative process: the AI performs exhaustive mechanical scanning and surfaces findings; the human provides intent context, exercises judgment on ambiguous findings, and delivers the final verdict. Neither does this well alone — the AI catches what fatigued human eyes miss across large or repetitive diffs; the human understands system intent, team conventions, and acceptable risk in ways the AI cannot fully infer.
+Code Review is a cooperative process: the AI performs exhaustive mechanical scanning and surfaces findings; the human provides intent context, exercises judgment on ambiguous findings, and delivers the final verdict. Neither does this well alone — the AI catches what fatigued human eyes miss across large or repetitive diffs; the human understands system intent, team conventions, and acceptable risk in ways the AI cannot fully infer.
 
-## When to Review
+## When to Code Review
 
 - A merge request has been submitted and is awaiting review
 - A reviewer has been assigned or has volunteered to evaluate a change

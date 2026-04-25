@@ -18,7 +18,8 @@ This repository contains meta-instructions — a guide for creating feature plan
 - `Investigate.md` — diagnose runtime system behavior using observability data
 - `Plan.md` — produce a feature plan with enough detail for correct first-pass implementation
 - `Implement.md` — implement incrementally from plans, maintaining an implementation log
-- `Review.md` — cooperative human+AI merge request review
+- `CodeReview.md` — cooperative human+AI merge request review of implementation artifacts
+- `PlanReview.md` — independent evaluation of plan documents before implementation begins
 - `Document.md` — verify documentation accuracy after changes
 - `Reflect.md` — capture what went well, what didn't, and concrete recommendations
 
@@ -31,18 +32,19 @@ This repository contains meta-instructions — a guide for creating feature plan
 ## Typical Workflow
 
 ```
-Ticket → Plan → Implement → Reflect
-       ↑        ↓
-    Discover (optional, pre-plan)
-   Investigate (optional, diagnostic)
+Ticket → Plan → Plan Review → Implement → Code Review → Reflect
+       ↑        ↓              ↑         ↑
+    Discover (optional, any)  Investigate (optional, any)
 ```
 
 1. **Ticket** — capture the work item in `docs/pending/<id>/ticket.md`
 2. **Plan** — produce `plan.md` following the guidance in `actions/Plan.md`
-3. **Implement** — build incrementally per plan, log decisions in `implementation.md`
-4. **Reflect** — capture lessons in `reflect.md`, move folder to `docs/completed/`
+3. **Plan Review** — independent evaluation of the plan document before implementation begins
+4. **Implement** — build incrementally per plan, log decisions in `implementation.md`
+5. **Code Review** — cooperative human+AI review of merge requests after implementation
+6. **Reflect** — capture lessons in `reflect.md`, move folder to `docs/completed/`
 
-*Discover and Investigate are optional pre-plan steps when the domain needs exploration first.*
+*Discover and Investigate are optional actions available at any point — before Plan, between steps, or in isolation.*
 
 ### Consumer Project Setup
 
