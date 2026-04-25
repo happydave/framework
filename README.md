@@ -47,9 +47,3 @@ Ticket → Plan → Implement → Reflect
 ### Consumer Project Setup
 
 When using this framework in a project repo, scaffold `docs/pending/` and `docs/completed/` directories there. The full set of action documents (Ticket through Reflect) and guidelines live in this framework repository.
-
-
-## License
-
-This project is released into the public domain under the [Unlicense](https://unlicense.org/).  
-You are free to use, modify, distribute, and do whatever you want with it — no restrictions, no attribution required.
