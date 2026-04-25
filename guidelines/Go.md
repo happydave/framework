@@ -12,27 +12,26 @@ The rules focus on unambiguous setup and tooling behavior so AI-generated code r
 - Explicitly grant freedom on non-critical choices.
 
 ## Module & Project Setup
-- **Module path**  
-  If the Go module path is unknown, ask the user:  
-  "What should the Go module path be? (e.g., github.com/yourname/project-name)"  
-  Record the confirmed path in the ticket's `plan.md` under "Programming Language(s)":  
-  "Go module path: [confirmed-path]"
+- **Module path**
+  If the Go module path is unknown, ask the user:
+  "What should the Go module path be? (e.g., github.com/yourname/project-name)"
+  Record the confirmed path in `plan.md` under a relevant section.
 
-- **go.mod handling**  
-  - Check if `go.mod` already exists in the project root.  
-  - If it exists → do not run `go mod init`; use the existing module.  
-  - If it does not exist → run `go mod init [confirmed-path]`.  
+- **go.mod handling**
+  - Check if `go.mod` already exists in the project root.
+  - If it exists → do not run `go mod init`; use the existing module.
+  - If it does not exist → run `go mod init [confirmed-path]`.
   - Never create nested Go modules (only one `go.mod` at project root).
 
-- **Module name validation**  
-  Perform only basic sanity checks (non-empty, no illegal characters).  
+- **Module name validation**
+  Perform only basic sanity checks (non-empty, no illegal characters).
   User is responsible for semantic correctness of the path.
 
 ## Tooling & Build Behavior
 - Always run `gofmt` (or `go fmt`) on generated code.
 - Use `go mod tidy` after adding or removing dependencies.
 - Build with: `go build -trimpath -ldflags="-s -w"` (produces smaller, cleaner binaries).
-- Run `go vet` and consider `golangci-lint` (default config) before marking code complete.
+- Run `go vet`. Prefer `golangci-lint` (default config) before marking code complete.
 
 ## Coding Conventions (Defaults)
 - Package names: lowercase, single word, no underscores.
@@ -55,5 +54,5 @@ The AI has full discretion over:
 - Test structure details (table-driven vs simple) unless a feature plan requires specific coverage
 
 ## Usage
-Reference this file in feature plans when Go is the target language.  
+Reference this file in feature plans when Go is the target language.
 Follow these rules automatically unless a feature plan explicitly overrides them.

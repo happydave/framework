@@ -41,7 +41,7 @@ Focus on issues that originated from the process, documentation, or tooling — 
 For each significant issue, propose a concrete change to prevent or reduce it in future implementations. Recommendations should target specific documents or artifacts:
 
 - Feature plans (e.g., add a missing invariant to feature 08)
-- Framework templates (e.g., add a section to `templates/feature.md`)
+- Framework action documents (e.g., update `actions/Plan.md` with additional plan sections)
 - Framework guidelines (e.g., update `guidelines/Docker.md`)
 - Implementation prompts (e.g., add an instruction to compile incrementally)
 - Makefile or tooling (e.g., add a pre-flight check)

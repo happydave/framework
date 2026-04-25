@@ -2,15 +2,61 @@
 
 ## Purpose
 
-Structured approach for deep human-AI collaboration on software projects.
+Structured approach for deep human-AI collaboration on software projects. Human remains deeply involved throughout planning.
 
-Human remains deeply involved throughout planning.
-
-Note: This document describes how to create feature plans for an AI agent, not a finished product other than those plans.
+This document describes how to create feature plans for an AI agent, not a finished product other than those plans.
 
 ## Intent
 
 Produce feature plans with enough clear, precise, descriptive detail that an AI can implement the feature correctly on the first attempt with minimal guesswork and maximum freedom for optimal implementation choices.
+
+## Plan Structure
+
+Every plan must include the sections below. Complete only what is genuinely necessary for unambiguous implementation; omit or mark optional sections that do not apply.
+
+**Objective**
+One clear sentence that captures the single desired purpose of the feature.
+Example: Enable users to securely register, verify their email, and log in so they can access protected resources.
+
+**Invariants & Hard Constraints**
+Bullet list of non-negotiable truths that must always hold. Keep this list short and provable. Include only items that, if violated, break correctness, security, or compliance.
+Examples:
+- Passwords are never stored in plain text or reversible form.
+- All authentication tokens expire and cannot be used after revocation.
+- Personally identifiable data is encrypted at rest using AES-256 or stronger.
+(For project-wide security rules — e.g., OWASP Top 10 mitigation, no plain-text secrets in logs — reference a central security.md or include critical ones here.)
+
+**Required Behaviors & Verifications**
+Concise descriptions of required behavior and verifiable success criteria. Organize by major concern (user-visible actions, data flows, security/privacy, etc.). Use SHALL statements for must-have outcomes and include focused scenarios (Gherkin-style or numbered steps) that define "done." Cover at least: one happy path, one key failure mode, one security-relevant case.
+Example:
+- SHALL allow new users to register with a valid email and strong password, then send a time-limited verification link.
+- SHALL reject registration attempts with duplicate emails (return 409 Conflict).
+Given valid email and strong password
+When user submits registration
+Then verification email is sent and account is created in unverified state
+AI has freedom over: route patterns, validation libraries, exact HTTP status wording (unless security-critical), internal error handling structure, and non-functional optimizations unless listed below.
+
+**Edge Cases & Required Error Responses**
+Bullet list of significant exceptions and exactly how the system must respond (status code, user message intent, retryability, etc.).
+
+**Non-Functional Constraints** (only when critical to the project)
+List only project-wide or feature-specific requirements that affect correctness or viability.
+
+**Data & State Changes** (when the feature affects persistent state)
+Simple description of new/updated entities and allowed transitions — no schema syntax or implementation detail.
+
+**Explicit AI Freedom**
+Mandatory closing section that lists what is intentionally **not** constrained. Tailor this list to reflect the actual project tech stack (e.g., specify allowed frameworks).
+Example:
+The AI has full discretion over:
+- Choice of libraries and patterns within the approved tech stack
+- File and directory organization
+- Naming conventions (except where names are user-visible or constrained)
+- Internal code structure and optimizations
+- Exact phrasing of non-security-critical user messages
+
+**Dependencies & Context**
+Reference related documents or prior features only when order or shared invariants matter.
 
 ## Style Guide
 
@@ -21,8 +67,7 @@ Produce feature plans with enough clear, precise, descriptive detail that an AI 
 - Bullets for lists; numbered for sequences
 - Strong descriptive text of expected behavior, data flows, edge cases, invariants — enough to eliminate ambiguity for implementation
 - Invariant section must contain: each invariant provably true given fundamental constraints, no unstated assumptions or dependencies, no implicit contradictions
-- Explicitly grant AI freedom in non-critical decisions (see templates/feature.md)
-- This framework assumes invariants will be scrutinized for these qualities during the Critically Assess step
+- This framework assumes invariants will be scrutinized during the Critically Assess step
 
 ## Document Storage & Naming
 
@@ -32,15 +77,6 @@ Feature plans live inside the ticket folder that originated them. When a ticket 
 - `docs/pending/PROJ-123-investigate-pipeline-jobs/plan.md`
 
 The presence of `plan.md` in a ticket folder indicates the ticket has been planned. The absence of `plan.md` indicates it has not.
-
-## Feature Plan Instructions
-
-For each feature, create `plan.md` in the ticket's folder following the guidance in `templates/feature.md`.
-
-That file provides:
-- Core principles (outcome focus, minimal constraints, explicit AI freedom)
-- Required sections (Objective, Invariants & Hard Constraints, Required Behaviors & Verifications, etc.)
-- Emphasis on unambiguous yet non-prescriptive detail sufficient for correct first-pass AI implementation
 
 ## General Guidelines
 
@@ -77,7 +113,7 @@ These are not sequential phases — they are aspects of planning that apply thro
 
 ### Writing the Plan
 
-Follow the Required Content & Guidance in `templates/feature.md`. Complete only sections genuinely needed for unambiguous implementation. Acceptance scenarios should focus on what constitutes sufficient completeness for human acceptance, rather than an exhaustive catalog of test cases.
+Complete only sections genuinely needed for unambiguous implementation. Acceptance scenarios should focus on what constitutes sufficient completeness for human acceptance, rather than an exhaustive catalog of test cases.
 
 This process is conducted closely with a human. If scrutiny reveals intractable ambiguity, the human should determine whether to revise scope, simplify descriptions, or defer the feature.
 
@@ -98,5 +134,4 @@ List explicitly in feature plans if relevant:
 ## Notes
 - Human deeply involved in planning and review
 - Planning documents must be unambiguous and detailed enough for correct first-pass implementation by AI
-- Use `templates/feature.md` as the canonical guide for feature plans to keep them lean and outcome-oriented
 - Refine framework iteratively via phase mini-retrospectives
