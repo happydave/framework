@@ -42,6 +42,7 @@ Include these when they are known and useful. Omit them when they are not:
 
 - **Proposed Changes** — a brief sketch of what might be built. This is a starting point for planning, not a commitment.
 - **Acceptance Criteria** — conditions that would confirm the work is done. Keep these outcome-oriented, not implementation-specific.
+- **Target Project** — which project will contain the implementation work; defaults to the capturing project when omitted or empty. Supports multiple targets via comma-separated listing, though one ticket per project is recommended for clarity. This field can be safely omitted when the ticket originates inside the target project.
 - **Source** — where the ticket originated (external issue URL, implementation log reference, conversation summary) if it helps preserve context.
 
 ## Procedure
