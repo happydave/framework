@@ -1,6 +1,17 @@
 # AI Adaptations for Debugging
 
-This document adapts traditional debugging methodologies for use by AI agents, specifically focusing on systematic diagnosis and overcoming cognitive biases.
+This document adapts traditional debugging methodologies for use by AI agents, specifically focusing on systematic diagnosis and overcoming cognitive biases. It complements `Investigate.md` (data collection procedures) with reasoning principles for how to interpret that data.
+
+**When to apply:** During the **Implement** phase when bugs surface, or during an **Investigate** action when runtime behavior needs deeper analysis.
+
+## Cross-Reference with Other Guidelines
+
+| Document | Role |
+|---|---|
+| `Discover.md` | Pre-planning investigation of products or technologies |
+| `Investigate.md` | Step-by-step procedures for collecting observability data |
+| `Evidence.md` | Rules for assessing the quality and reliability of evidence |
+| **`Debug.md`** (this file) | AI-specific reasoning methods for interpreting evidence and generating hypotheses |
 
 ## 1. Structured Hypothesis Generation
 
@@ -39,9 +50,3 @@ Before finalizing a fix, the agent should "critique" its own solution.
     2.  Ask: "What side effects could this change have on the rest of the system?"
     3.  Ask: "Is this the simplest way to fix the root cause, or am I just masking a symptom?"
     4.  Adjust the fix based on this internal critique.
-
-## 5. Automation of Delta Debugging
-
-Agents should leverage their ability to process text to automate isolation.
-
--   **Technique**: If a large file is suspected of having a configuration error, the agent should systematically comment out sections (binary search) until the error disappears, rather than guessing which line is wrong.

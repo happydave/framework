@@ -30,6 +30,7 @@ This repository contains meta-instructions — a guide for creating feature plan
 - `Go.md` — Go module setup, tooling, conventions
 - `Docker.md` — container-first build environment (`Dockerfile.dev` + `Makefile` pattern)
 - `Evidence.md` — evidence assessment rules for investigations
+- `Debug.md` — AI agent debugging methodology (structured hypothesis generation, bias mitigation)
 
 ## Typical Workflow
 
