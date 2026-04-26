@@ -68,6 +68,8 @@ When all features are implemented:
 
 Follow the procedure in `actions/Document.md` to verify that the project's documentation (README, code comments, help text, etc.) is accurate and consistent with the changes just made.
 
+When a change affects only documentation files (e.g., updating README, action files), there is no code-level drift between implementation and documentation to detect. In such cases the Document pass may be minimal — confirming "no drift detected" rather than producing corrections. The Document action is still performed; its output is simply lightweight.
+
 ## Guidance
 
 - Follow the constraints in the planning documents strictly. Invariants and SHALL statements are non-negotiable. AI freedom sections are where discretion applies.

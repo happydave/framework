@@ -35,8 +35,6 @@ This repository contains meta-instructions — a guide for creating feature plan
 
 ```
 Ticket → Plan → Plan Review → Implement → Code Review → Document → Reflect → Close
-       ↑        ↓              ↑         ↑
-    Discover (optional, any)  Investigate (optional, any)
 ```
 
 1. **Ticket** — capture the work item in `docs/pending/<id>/ticket.md`
