@@ -39,15 +39,15 @@ Ticket → Plan → Plan Review → Implement → Code Review → Document → R
 ```
 
 1. **Ticket** — capture the work item in `docs/pending/<id>/ticket.md`
-2. **Plan** — produce `plan.md` following the guidance in `actions/Plan.md`
+2. **Plan** — produce `plan.md` following the guidance in `procedures/Plan.md`
 3. **Plan Review** — independent evaluation of the plan document before implementation begins
 4. **Implement** — build incrementally per plan, log decisions in `implementation.md`
 5. **Code Review** — cooperative human+AI review of merge requests after implementation
 6. **Document** — verify documentation accuracy and consistency after changes
 7. **Reflect** — capture lessons in `reflect.md`
 
-*Discover and Investigate are optional actions available at any point — before Plan, between steps, or in isolation.*
+*Discover and Investigate are optional procedures available at any point — before Plan, between steps, or in isolation.*
 
 ### Consumer Project Setup
 
-When using this framework in a project repo, scaffold `docs/pending/` and `docs/complete/` directories there. The full set of action documents (Ticket through Reflect) and guidelines live in this framework repository.
+When using this framework in a project repo, scaffold `docs/pending/` and `docs/complete/` directories there. The full set of procedure documents (Ticket through Reflect) and guidelines live in this framework repository.

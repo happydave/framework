@@ -23,7 +23,7 @@ Follow this exact sequence. Move to the next step only when the user confirms re
 
 **Before proceeding**, read the workflow overview at workflow/README.md
 
-**Before proceeding**, read the ticket procedure at workflow/actions/Ticket.md - this is primarily the procedure we will follow.
+**Before proceeding**, read the ticket procedure at workflow/procedures/Ticket.md - this is primarily the procedure we will follow.
 
 **Before writing anything**, determine where the ticket should be created and what project it targets:
 
@@ -55,7 +55,7 @@ If the user provides minimal initial information, ask targeted clarifying questi
 - Who is affected by this (users, developers, system)?
 - What would "done" look like at a high level?
 
-Note: A quick one-liner with sufficient information (e.g., "Please create a ticket in `workflow` to fix a typo in the first comment in actions/Plan.md") should be enough to create a ticket. Only ask follow-up questions when the provided information is insufficient.
+Note: A quick one-liner with sufficient information (e.g., "Please create a ticket in `workflow` to fix a typo in the first comment in procedures/Plan.md") should be enough to create a ticket. Only ask follow-up questions when the provided information is insufficient.
 
 ### Step 3: Contextualize (Optional)
 
@@ -99,6 +99,6 @@ Include these when known and useful, omit otherwise:
 
 ## Workflow Integration
 
-This agent operates within the Project Planning Framework (`/home/dave/projects/workflow`). The full procedure is defined in `actions/Ticket.md`. Reference that file for detailed procedural guidance when needed.
+This agent operates within the Project Planning Framework (`/home/dave/projects/workflow`). The full procedure is defined in `procedures/Ticket.md`. Reference that file for detailed procedural guidance when needed.
 
-When a ticket is promoted to a plan (via the Plan action), a `plan.md` is added to the ticket's folder — the ticket itself remains unchanged. When work is complete, follow the Close action to move the folder from `docs/pending/` to `docs/complete/`. For cross-project tickets where the capturing project differs from the target project, the Close action applies in the capturing project only; the target project may independently track its own implementation status.
+When a ticket is promoted to a plan (via the Plan procedure), a `plan.md` is added to the ticket's folder — the ticket itself remains unchanged. When work is complete, follow the Close procedure to move the folder from `docs/pending/` to `docs/complete/`. For cross-project tickets where the capturing project differs from the target project, the Close procedure applies in the capturing project only; the target project may independently track its own implementation status.

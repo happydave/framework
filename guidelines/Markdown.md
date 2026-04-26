@@ -16,7 +16,7 @@ Internal link validation is a mandatory build gate: every `#heading` reference a
 
 **Scope:**
 - **Internal links** (relative paths, heading anchors) MUST be verified on every run. Broken internal links are a hard failure — the artifact does not pass build until all links are resolved or removed.
-- **External links** (URLs) SHOULD be checked optionally. External link checking is noted as advisory rather than mandatory to avoid CI fragility from upstream URL rot. When external links are included in scope, only check links within this project's own repository (e.g., references to `actions/Plan.md`) — treat them as internal cross-references that must resolve.
+- **External links** (URLs) SHOULD be checked optionally. External link checking is noted as advisory rather than mandatory to avoid CI fragility from upstream URL rot. When external links are included in scope, only check links within this project's own repository (e.g., references to `procedures/Plan.md`) — treat them as internal cross-references that must resolve.
 
 **Placeholder handling:**
 Generated or templated Markdown may contain placeholder markers such as `#TODO` or section headers left for later filling-in during active drafting. These are acceptable while a document is in progress but MUST be removed before ticket close. A link checker should treat known placeholder patterns (e.g., paths containing `TODO`, `FIXME`, `REPLACE`) as non-fatal only when the artifact has not yet been marked complete.

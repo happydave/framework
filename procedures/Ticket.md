@@ -53,7 +53,7 @@ Include these when they are known and useful. Omit them when they are not:
 
 ## Completion
 
-When work on a ticket is fully implemented and verified, follow the procedure in `actions/Close.md` to formally close the ticket.
+When work on a ticket is fully implemented and verified, follow the procedure in `procedures/Close.md` to formally close the ticket.
 
 ## Guidance
 

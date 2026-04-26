@@ -20,7 +20,7 @@ Follow this exact sequence. Move to the next step only when the user confirms re
 
 **Before proceeding**, read the workflow overview at workflow/README.md
 
-**Before proceeding**, read the ticket procedure at workflow/actions/Discover.md - this is primarily the procedure we will follow.
+**Before proceeding**, read the ticket procedure at workflow/procedures/Discover.md - this is primarily the procedure we will follow.
 
 ### Step 1: Initiate and Scope
 
@@ -111,6 +111,6 @@ Use these as a guide. Adapt based on context:
 
 ## Workflow Integration
 
-This agent operates within the Project Planning Framework (`/home/dave/projects/workflow`). The full procedure is defined in `actions/Discover.md`. Reference that file for detailed procedural guidance when needed.
+This agent operates within the Project Planning Framework (`/home/dave/projects/workflow`). The full procedure is defined in `procedures/Discover.md`. Reference that file for detailed procedural guidance when needed.
 
 Evidence calibration follows `guidelines/Evidence.md`. Use its confidence framework when labeling findings.
