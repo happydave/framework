@@ -52,7 +52,7 @@ Implement changes (other than infrastructure and scaffolding) in the order speci
 1. Implement the change according to the plan
 2. Test to verify correctness
 3. Fix any errors before moving to the next change
-4. Document progress
+4. Update `implementation.md`
 
 Avoid batching changes then compiling once at the end. Incremental verification catches errors early and reduces rework.
 
