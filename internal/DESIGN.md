@@ -16,7 +16,7 @@ The primary goal of this framework is to enable the production of high-quality c
 ## Naming Conventions
 
 ### File Naming
-- **Workflow Guidance Documents**: All files in `procedures/` and `guidelines/` must use **PascalCase** (e.g., `Plan.md`, `TypeScript.md`). This distinguishes the framework's authoritative instructions from project-specific artifacts.
+- **Workflow Guidance Documents**: All files in `procedures/`, `guidelines/`, and `agents/` must use **PascalCase** (e.g., `Plan.md`, `TypeScript.md`, `WorkItem.md`). This distinguishes the framework's authoritative instructions from project-specific artifacts.
 - **Work Items vs. Tickets**: We use the term **Work Item** to describe the conceptual unit of work (feature, bug, task). The term **Ticket** is reserved for the physical reference identifier. Files created within specific work item folders (e.g., in `docs/pending/`) must use **lowercase-kebab-case** and the intake document is always named `ticket.md` (e.g., `ticket.md`, `plan.md`, `implementation.md`). This makes them visually distinct from the framework files.
 
 ### Referencing
@@ -26,7 +26,7 @@ The primary goal of this framework is to enable the production of high-quality c
 ## Structural Principles
 
 - **Actor Agnosticism**: Procedures should be written to be performed by a "Reviewer" or "Author" rather than explicitly "Human" or "AI." This allows the framework to transition from human-driven to AI-driven to fully automated without rewriting the core logic.
-- **Separation of Concerns**: `procedures/` define *what* to do; `guidelines/` define *how* to do it in specific contexts (languages, tools).
+- **Separation of Concerns**: `procedures/` define *what* to do; `guidelines/` define *how* to do it in specific contexts (languages, tools); `agents/` define *who* executes the procedure (for AI-driven steps).
 - **Independent Verification**: Where possible, critical steps (like Plan Review) should be designed as external gates that don't rely solely on the original author's self-assessment.
 - **Context Optimization**: To minimize token pressure and align with LLM initial read limits, core framework documents follow a principle of "progressive context disclosure."
     - **100-Line Target**: Primary skills and procedures aim to remain under 100 lines.

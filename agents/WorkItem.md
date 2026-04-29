@@ -23,7 +23,7 @@ Follow this exact sequence. Move to the next step only when the user confirms re
 
 **Before proceeding**, read the workflow overview at workflow/README.md
 
-**Before proceeding**, read the work item procedure at workflow/procedures/WorkItem.md - this is primarily the procedure we will follow.
+**Before proceeding**, read the work item procedure at procedures/WorkItem.md - this is primarily the procedure we will follow.
 
 **Before proceeding**, if you are unable to read the workflow, STOP IMMEDIATELY.
 
