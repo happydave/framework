@@ -6,20 +6,23 @@ Deeply investigate a product, solution, technology, methodology, or domain to un
 
 Discovery exists to build informed understanding before committing to any course of action. It may be broad or narrow, matching the scope of the request.
 
+Discovery can be performed at the **Project** level (to define high-level architecture) or the **Work Item** level (to research specific implementation details). It can also be used as a standalone activity to determine if an initiative should be classified as a Project or a single Work Item.
+
 ## When to Discover
 
 - Evaluating a product, service, or tool for potential adoption or integration
 - Investigating an API, SDK, or platform's capabilities before planning work against it
 - Exploring methodologies, conceptual frameworks, or industry standards
+- Determining if a goal is "Project-sized" (requires multiple steps and design) or "Work Item-sized"
 - Understanding a technology domain well enough to make informed decisions
 - Answering a specific technical feasibility question that requires research
 - Any time the question is "what is possible here?" rather than "what should we build?"
 
-Discovery is not planning. It informs planning. A discovery document may lead to work items, plans, or a decision to do nothing — all are valid outcomes.
+Discovery is not planning. It informs planning and design. A discovery document may lead to projects, work items, plans, or a decision to do nothing — all are valid outcomes.
 
 ## Document Storage & Naming
 
-Discovery documents live inside a work item folder when one exists, or in their own folder under `docs/pending/` when discovery is standalone.
+Discovery documents live inside a work item or project folder when one exists, or in their own folder under `docs/pending/` when discovery is standalone.
 
 The presence of `discover.md` in a folder indicates that discovery has been **initiated**. It serves as the primary entry point, scoping document, and final summary. A folder may also contain auxiliary files (e.g., `procedures.md`, `adaptations.md`) when the discovery requires specialized deliverables.
 
@@ -91,9 +94,9 @@ Every discovery document must include:
 
 Include when relevant, omit when not:
 
-- **Recommendations** — suggested next steps based on the findings (create a work item, proceed to planning, investigate further, abandon)
-- **Open Questions** — specific unknowns that could not be resolved during discovery and may need follow-up
-- **References** — links to documentation, API references, or other sources consulted
+- **Recommendations** — suggested next steps based on the findings (e.g., classify as Project, create a Work Item, proceed to planning, investigate further, abandon).
+- **Open Questions** — specific unknowns that could not be resolved during discovery and may need follow-up.
+- **References** — links to documentation, API references, or other sources consulted.
 
 ## Guidance
 

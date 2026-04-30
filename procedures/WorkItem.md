@@ -2,23 +2,25 @@
 
 ## Intent
 
-Capture a potential work item — a feature idea, bug report, improvement, or observation — as a lightweight record in the project's `docs/pending/` directory. Work items are intake documents, not plans. They preserve enough context for later triage and planning without requiring deep analysis at the time of creation.
+Capture a potential work item — a feature idea, bug report, improvement, or observation — as a lightweight record in a centralized `docs/pending/` directory. Work items are intake documents, not plans. They preserve enough context for later triage and planning without requiring deep analysis at the time of creation.
 
 Work items may originate from any source: an external issue tracker, a conversation, a problem encountered during implementation, or an idea that surfaces opportunistically during unrelated work. The goal is to capture it before the context is lost.
 
 ## When to Create a Work Item
 
-- A feature idea or enhancement is identified but is not part of the current implementation scope
+- A feature idea or enhancement is identified
 - A bug or unexpected behavior is discovered during testing or usage
-- An external request or issue needs to be tracked within the project
-- An implementation reflection produces a recommendation that warrants its own work item
+- An external request or issue needs to be tracked
+- A project design is being decomposed into actionable steps
 - Any time the thought "we should do X" arises and X is not already tracked
 
 Do not defer capture. A brief work item written now is more valuable than a detailed one never written.
 
 ## Document Storage & Naming
 
-Each work item gets its own folder under `docs/pending/`, named with an identifier and short description in kebab-case. The intake document inside is always named `workitem.md` — this serves as the persistent identifier for the work item.
+Work items are stored in a central management repository (e.g., `tickets`), not in individual code repositories.
+
+Each work item gets its own folder under `docs/pending/`, named with an identifier and short description in kebab-case. The intake document inside is always named `workitem.md`.
 
 Two naming conventions are supported for the folder:
 
@@ -35,6 +37,7 @@ Every `workitem.md` must include:
 
 - **Title** — a concise description of the work item.
 - **Status** — the current state of the work item (e.g., `pending`, `complete`).
+- **Project** — the slug of the project this work item belongs to, or `none` for standalone items.
 - **Description** — enough context to understand the need without referring to the original source. One to three sentences is often sufficient. Include the "why" — what problem this solves or what capability it enables.
 
 ## Optional Content

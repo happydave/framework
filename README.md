@@ -15,8 +15,11 @@ The workflow is supported by **Agents** — automated actors that help execute s
 ## File Layout
 
 **Actions** — step-by-step procedures for each phase:
+- `Project.md` — initiate and manage high-level initiatives
+- `Design.md` — architectural blueprint for projects
+- `DesignReview.md` — independent evaluation of designs
 - `WorkItem.md` — intake for work items (keep them short)
-- `Discover.md` — investigate products, APIs, or technology domains before planning
+- `Discover.md` — investigate products, APIs, or technology domains
 - `Investigate.md` — diagnose runtime system behavior using observability data
 - `Plan.md` — produce a feature plan with enough detail for correct first-pass implementation
 - `Implement.md` — implement incrementally from plans, maintaining an implementation log
@@ -25,7 +28,7 @@ The workflow is supported by **Agents** — automated actors that help execute s
 - `Document.md` — verify documentation accuracy after changes
 - `Reflect.md` — capture what went well, what didn't, and concrete recommendations
 - `Complete.md` — formally mark a work item as complete in `workitem.md`
-- `Archive.md` — move a completed work item folder to `docs/archive/` (on request)
+- `Archive.md` — move a completed work item folder to `docs/archive/` or a project's archive folder
 
 **Guidelines** — language/tooling-specific rules:
 - `Markdown.md` — quality gates for Markdown artifacts (link checking, structure verification, spell checking)
@@ -38,20 +41,23 @@ The workflow is supported by **Agents** — automated actors that help execute s
 ## Typical Workflow
 
 ```
-Work Item → Plan → Plan Review → Implement → Code Review → Document → Reflect → Complete (→ Archive)
+Project → Design → Design Review → Work Item → Plan → Plan Review → Implement → Code Review → Document → Reflect → Complete (→ Archive)
 ```
 
-1. **Work Item** — capture the item in `docs/pending/<id>/workitem.md` (Assisted by: **Work Item Agent**)
-2. **Plan** — produce `plan.md` following the guidance in `procedures/Plan.md` (Assisted by: **Planner Agent**)
-3. **Plan Review** — independent evaluation of the plan document before implementation begins (Assisted by: **Reviewer Agent**)
-4. **Implement** — build incrementally per plan, log decisions in `implementation.md` (Assisted by: **Implementer Agent**)
-5. **Code Review** — cooperative human+AI review of merge requests after implementation
-6. **Document** — verify documentation accuracy and consistency after changes (Assisted by: **Documenter Agent**)
-7. **Reflect** — capture lessons in `reflect.md` (Assisted by: **Reflector Agent**)
-8. **Complete** — update status to `complete` in `workitem.md` (Assisted by: **Reviewer Agent**)
+1. **Project** — define high-level initiatives in `docs/projects/<slug>/project.md`
+2. **Design** — architectural blueprint in `docs/projects/<slug>/design.md`
+3. **Design Review** — evaluate design against project goals (Gate: status $\rightarrow$ `Designed`)
+4. **Work Item** — capture work items in `docs/pending/<id>/workitem.md` (centralized management)
+5. **Plan** — produce `plan.md` following the guidance in `procedures/Plan.md`
+6. **Plan Review** — independent evaluation of the plan document before implementation begins
+7. **Implement** — build incrementally per plan, log decisions in `implementation.md`
+8. **Code Review** — cooperative human+AI review of merge requests after implementation
+9. **Document** — verify documentation accuracy and consistency after changes
+10. **Reflect** — capture lessons in `reflect.md`
+11. **Complete** — update status to `complete` in `workitem.md`
 
-*Discover and Investigate are optional procedures available at any point — before Plan, between steps, or in isolation. Research is assisted by the **Discover Agent**. Archive is an optional final step to move completed items to long-term storage.*
+*Discover and Investigate are optional procedures available at any point — before Plan, between steps, or in isolation. Research is assisted by the **Discover Agent**. Archive is an optional final step to move completed items to long-term storage (either general or project-specific).*
 
 ### Consumer Project Setup
 
-When using this framework in a project repo, scaffold `docs/pending/` and `docs/archive/` directories there. The full set of procedure documents (Work Item through Archive) and guidelines live in this framework repository.
+When using this framework, scaffold `docs/projects/`, `docs/pending/`, and `docs/archive/` directories in your central ticket/management repository. Work items are managed here, while code changes occur in their respective repositories. The full set of procedure documents and guidelines live in this framework repository.
