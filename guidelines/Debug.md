@@ -17,7 +17,7 @@ This document adapts traditional debugging methodologies for use by AI agents, s
 
 AI agents should not just "try a fix." They must formalize their reasoning before editing code.
 
--   **Requirement**: Before any code change, state the hypothesis in the terminal or a log file.
+-   **Requirement**: Before any code change, state the hypothesis in the terminal, the implementation log, or a `debug.md` file.
 -   **Template**:
     -   **Observed**: "Test `api_timeout` failed with 500 Error."
     -   **Hypothesis**: "The timeout middleware is triggered before the database connection is established."
@@ -50,3 +50,14 @@ Before finalizing a fix, the agent should "critique" its own solution.
     2.  Ask: "What side effects could this change have on the rest of the system?"
     3.  Ask: "Is this the simplest way to fix the root cause, or am I just masking a symptom?"
     4.  Adjust the fix based on this internal critique.
+
+## 5. Surprise Analysis & Assumption Proofing
+
+When a prediction fails or a result contradicts the current mental model, the agent must pause to re-baseline. The level of rigor applied should be proportional to the severity of the failure.
+
+- **Protocol**:
+    1. **Gap Analysis**: Explicitly document the `Expected Result` vs. `Observed Result`.
+    2. **Assumption Inventory**: Enumerate all assumptions that supported the failed expectation (e.g., "Assumed the environment variable was set," "Assumed the function returned a Promise").
+    3. **Direct Proofs**: Systematically verify each assumption with a targeted test, code inspection, log statement, or debugger inspection.
+    4. **Log Results**: Document the outcome of these proofs before formulating the next hypothesis.
+- **Persistence**: For significant failures or persistent issues, record this analysis in a `debug.md` file within the current work item or investigation folder to preserve the reasoning trail without cluttering the primary log (`implementation.md` or `investigate.md`).

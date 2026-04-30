@@ -20,7 +20,7 @@ The primary goal of this framework is to enable the production of high-quality c
 - **Projects vs. Work Items**: 
     - **Projects** are high-level initiatives tracked in `docs/projects/<slug>/project.md`. 
     - **Work Items** are tactical units of work tracked in `docs/pending/<id>/workitem.md`. 
-- **Work Items vs. Tickets**: We use the term **Work Item** to describe the conceptual unit of work (feature, bug, task). The term **Ticket** is reserved for the physical reference identifier. Files created within specific work item folders must use **lowercase-kebab-case** and the intake document is always named `workitem.md` (e.g., `workitem.md`, `plan.md`, `implementation.md`). This makes them visually distinct from the framework files.
+- **Work Items vs. Tickets**: We use the term **Work Item** to describe the conceptual unit of work (feature, bug, task). The term **Ticket** is reserved for the physical reference identifier. Files created within specific work item folders must use **lowercase-kebab-case** and the intake document is always named `workitem.md` (e.g., `workitem.md`, `plan.md`, `implementation.md`, `debug.md`). This makes them visually distinct from the framework files.
 
 ### Referencing
 - When a document refers to a framework file, use the capitalized name: "Follow the steps in `Plan.md`."
