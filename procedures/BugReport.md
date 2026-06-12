@@ -38,10 +38,13 @@ Create `docs/pending/<N>-<short-name>/` where `<short-name>` is a brief kebab-ca
 Create `docs/pending/<N>-<short-name>/workitem.md` using the structure below. Fill in all required fields. For optional fields, include them if known; write "unknown" or "not yet available" rather than omitting the heading.
 
 ```
-# Work Item: <short description of the defect>
+---
+title: <short description of the defect>
+status: pending
+project: <project slug>
+---
 
-**Status:** pending
-**Project:** <project slug>
+# Work Item: <short description of the defect>
 
 ## Description
 
