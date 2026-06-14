@@ -41,7 +41,7 @@ This repository contains meta-instructions - the governing standard for how feat
 
 **skills**
 - `go.md` — Go module setup, tooling, conventions
-- `typescript.md` — VS Code extension / Node.js conventions (Docker-based builds)
+- `typescript.md` — TypeScript hub: universal conventions + profiles for VS Code extensions and SPA/game/web (Docker-based builds)
 - `docker.md` — container-first build environment (`Dockerfile.dev` + `Makefile` pattern)
 - `markdown.md` — quality gates for Markdown artifacts (link checking, structure verification, spell checking)
 - `sql.md` — SQL conventions for queries, schema, and migrations

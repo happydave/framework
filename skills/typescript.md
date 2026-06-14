@@ -1,14 +1,14 @@
 ---
 name: typescript
-description: TypeScript and Node.js conventions for VS Code extensions and tooling
+description: TypeScript conventions for all project types — hub document; see profiles for build-environment specifics
 ---
 # TypeScript Language Guidelines
 
 ## Purpose
-These guidelines ensure consistent, correct TypeScript code when the project uses TypeScript — particularly for VS Code extensions and Node.js tooling. They apply whenever a feature plan targets TypeScript.
+These guidelines ensure consistent, correct TypeScript code across all project types that use TypeScript. This document covers universally-true rules. Build environment, tooling, and project-type-specific conventions are defined in the profile documents listed in the **Profile Selection** section below.
 
 ## Core Principles
-- Follow standard TypeScript idioms and VS Code extension conventions.
+- Follow standard TypeScript idioms.
 - Prefer simplicity, explicit types, and strict mode.
 - Only constrain what is necessary for correctness or project consistency.
 - Explicitly grant freedom on non-critical choices.
@@ -23,48 +23,26 @@ Key rules (see `skills/docker.md` for full details):
 - `node_modules/` is written to the host via volume mount so that editor tooling (IntelliSense, language servers) can use it.
 - `Dockerfile.dev` defines the build image; `Makefile` defines the targets.
 
-### Standard Makefile Targets
-
-| Target | Command inside Docker | Description |
-|---|---|---|
-| `make install` | `npm install` | Install dependencies |
-| `make compile` | `npx tsc -p .` | One-shot TypeScript compile |
-| `make watch` | `npx tsc -watch -p .` | Continuous rebuild (interactive) |
-| `make package` | `npx vsce package --no-dependencies` | Build VSIX (VS Code extensions) |
-| `make clean` | *(runs on host)* | `rm -rf node_modules dist out *.vsix` |
-
-### Dockerfile.dev (typical)
-
-```dockerfile
-FROM node:lts-alpine
-RUN npm install -g @vscode/vsce
-WORKDIR /workspace
-```
-
-Adapt as needed: add global tools the project requires (e.g., `esbuild`, test runners). Keep the image small.
-
 ## Module & Project Setup
 
-- **`package.json`** — the single source of truth for project metadata, dependencies, scripts, and VS Code extension contributions.
-- **`tsconfig.json`** — use strict mode (`"strict": true`). Target `ES2022` or later. Output to `dist/`. Source in `src/`.
-- **One `tsconfig.json` at project root.** Do not create nested tsconfigs unless the project has genuinely separate compilation targets.
-- **Lock file** — `package-lock.json` is committed to the repo. It is generated inside Docker via `make install`.
+- **`package.json`** — the single source of truth for project metadata, dependencies, and scripts.
+- **`tsconfig.json`** — use strict mode (`"strict": true`). One `tsconfig.json` at project root. Source in `src/`. Target version and output directory are profile-specific — see the applicable profile.
+- Do not create nested tsconfigs unless the project has genuinely separate compilation targets.
+- **Lock file** — `package-lock.json` is committed to the repo. Generated inside Docker via `make install`.
 
 ## Tooling & Build Behavior
 
-- Compile with `tsc` (via `make compile` or `make watch`).
-- Use `@types/vscode` and `@types/node` as dev dependencies for VS Code extension projects.
-- Run `make compile` after every set of changes to verify correctness before moving on. Do not batch all implementation and compile once at the end.
-- **Verification after Edits:** Always run `make compile` (or the project's equivalent build/verification step) after any non-trivial `replace_string_in_file` operation. This ensures that syntax errors introduced by automated edits (e.g., shell interpolation issues) are caught immediately before further implementation or testing.
-- If a bundler (esbuild, webpack) is needed, add it to `Dockerfile.dev` and wrap it in a Makefile target. Do not install it on the host.
+- Run the profile's verification command (e.g., `make compile`) after every set of changes to verify correctness before moving on. Do not batch all implementation and verify once at the end.
+- **Verification after Edits:** Always run the profile's build/verify step after any non-trivial automated file operation. This ensures that syntax errors introduced by automated edits are caught immediately before further implementation or testing.
+- If a bundler (esbuild, webpack, vite) is needed, add it to `Dockerfile.dev` and wrap it in a Makefile target. Do not install it on the host.
 
 ## Testing Guidelines
 
-- **Standard Tooling:** Projects should use established frameworks (e.g., `jest`, `mocha`). All test runs must be wrapped in a `make test` target.
+- **Standard Tooling:** Projects should use established frameworks (e.g., `jest`, `mocha`, `vitest`). All test runs must be wrapped in a `make test` target.
 - **String Manipulation Logic:** When testing code that involves truncation, splitting, or buffering of large strings:
     - **Structural Markers:** Ensure test data contains necessary structural markers (like newlines `\n` or delimiters) at expected intervals. Logic can fail silently or yield "zero-result" cases if the test string is a single monolithic block but the logic expects multi-line input.
     - **Marker Density:** Verify that the "density" of markers in test strings is sufficient to exercise boundary conditions (e.g., a newline exactly at the truncation limit).
-    - **Helpers:** Use helper functions to generate structured test content (e.g., `"line\n".repeat(100)`) rather than hardcoding large strings. This ensures predictable structure and makes boundary tests easier to reason about.
+    - **Helpers:** Use helper functions to generate structured test content (e.g., `"line\n".repeat(100)`) rather than hardcoding large strings.
 
 ## Coding Conventions (Defaults)
 
@@ -73,29 +51,13 @@ Adapt as needed: add global tools the project requires (e.g., `esbuild`, test ru
 - **No `any`** unless genuinely unavoidable and documented with a comment explaining why.
 - **Prefer `const`** over `let`. Never use `var`.
 - **Error handling:** Catch specific errors where possible. Do not silently swallow errors — log them or re-throw.
-- **Imports:** Use named imports. Avoid `import *` except for the `vscode` namespace (`import * as vscode from "vscode"`).
-- **No `console.log` / `console.warn` / `console.error`** in VS Code extension source code. Use a `LogOutputChannel` (see Diagnostics section below).
-
-## VS Code Extension Conventions
-
-- **Activation:** Use the narrowest activation events possible (`onCommand:`, `workspaceContains:`, `onLanguage:`). Use `onStartupFinished` only when the extension must be available unconditionally (e.g., chat participants).
-- **Disposal:** Register all resources (views, watchers, channels, providers) on `context.subscriptions` in `activate()`. Do not rely on `deactivate()` for cleanup of VS Code-managed resources.
-- **Diagnostics:** Use `vscode.window.createOutputChannel(name, { log: true })` to create a `LogOutputChannel`. Initialize it as the first statement in `activate()`. Use `log().info/debug/warn/error/trace()` throughout. Verbosity is controlled by the built-in "Developer: Set Log Level..." command — no custom settings needed.
-- **Configuration:** Contribute settings via `contributes.configuration` in `package.json`. Use `vscode.workspace.getConfiguration()` to read them.
-- **Configuration Scoping:** Before declaring a new variable to hold configuration (e.g., `const config = ...`), check the current function or method scope for existing configuration variables (like `config`, `configuration`, `settings`). Reuse the existing object if present to avoid redeclaration errors and ensure consistency.
-- **Commands:** Prefix all command IDs with the extension name (e.g., `cogpress.refreshBuckets`).
+- **Imports:** Use named imports. Avoid `import *` unless the profile or project convention requires it.
 
 ## Security & Safety Invariants
 
 - Never log secrets, tokens, passwords, or API keys at any log level.
 - Validate all user-provided configuration paths before using them (check existence, handle missing gracefully).
 - Use atomic writes (write to temp file, rename) when writing to user-owned files to avoid corruption on crash.
-
-## Dependencies
-
-- Minimize external dependencies. Prefer the Node.js standard library and VS Code API.
-- No native binary dependencies (`better-sqlite3`, etc.) — they cause VS Code Marketplace distribution problems. Use pure JS/WASM alternatives (e.g., `sql.js`).
-- Dev dependencies (`@types/*`, `typescript`, build tools) are fine in any quantity.
 
 ## Explicit AI Freedom
 
@@ -104,10 +66,21 @@ The AI has full discretion over:
 - Exact file organization and module splitting within `src/`
 - Choice of helper patterns (classes vs. functions, etc.)
 - Whether to use `interface` or `type` for object shapes
-- Test framework choice and test structure
+- Test framework choice and test structure (within the profile's recommendation)
 - Exact formatting (the project may adopt a formatter later)
 - Minor refactoring for readability or performance unless constrained by the feature plan
 
+## Profile Selection
+
+Select the profile that matches your project type and read it alongside this hub document. Both documents together define the complete set of conventions for that project type.
+
+| Profile | When to use |
+|---|---|
+| [VS Code Extension](typescript/vscode-extension.md) | Projects that produce a `.vsix` extension package published to the VS Code Marketplace |
+| [SPA / Game / Web](typescript/spa.md) | Projects that produce a browser-hosted application — SPAs, browser games, Vite-based apps |
+
+If a future project type does not fit either profile, add a new profile rather than stretching an existing one.
+
 ## Usage
-Reference this file in feature plans when TypeScript is the target language.
+Reference this file in feature plans when TypeScript is the target language. Always include the applicable profile in the reference.
 Follow these rules automatically unless a feature plan explicitly overrides them.

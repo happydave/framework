@@ -106,7 +106,7 @@ The presence of `plan.md` in a work item folder indicates the item has been plan
 
 The planning process MUST identify all applicable guidelines and document them in the feature plan's **Applicable Guidelines** section. This is mandatory, not optional. Guidelines from `skills/[name].md` define the build and test procedures that Code and Document actions will use — they cannot be applied correctly if they are not named in the plan.
 
-- Inspect the project root and purpose to determine which guidelines apply (e.g., `skills/go.md` for Go projects, `skills/typescript.md` for Node.js/VS Code extension projects, `skills/docker.md` for Docker-based builds, `skills/markdown.md` for documentation-heavy projects).
+- Inspect the project root and purpose to determine which guidelines apply (e.g., `skills/go.md` for Go projects, `skills/typescript.md` (plus the applicable profile) for TypeScript projects, `skills/docker.md` for Docker-based builds, `skills/markdown.md` for documentation-heavy projects).
 - Record each applicable guideline and its defined build/test steps in the plan's Applicable Guidelines section.
 - If a project spans multiple guidelines (e.g., Go + Docker), list all of them.
 
