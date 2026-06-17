@@ -69,5 +69,27 @@ These are distinct operations. There is no `make package` target — the `dist/`
 
 Vitest is the recommended test framework for Vite projects — it shares `vite.config.ts` and requires minimal additional setup. All test runs must be wrapped in a `make test` target, consistent with the hub guideline.
 
+## Phaser 3 Angle API (mixed units — verify before use)
+
+Phaser's angle utilities do not follow a consistent naming convention for radians vs degrees. Before using any `Phaser.Math.Angle.*` function, check its parameter docs.
+
+**Radians** (degrees will silently produce wrong results):
+- `Phaser.Math.Angle.Between(x1, y1, x2, y2)` — returns radians in [-π, π]
+- `Phaser.Math.Angle.RotateTo(current, target, lerp)` — all values in radians
+- `Phaser.Math.Angle.GetShortestDistance(a1, a2)` — radians
+- `Phaser.Math.Angle.Wrap(angle)` — radians, wraps to [-π, π]
+
+**Degrees** (radians will silently produce wrong results):
+- `Phaser.Math.Angle.ShortestBetween(a1, a2)` — degrees in [-180, 180]; use this for sprite rotation
+- `Phaser.Math.Angle.WrapDegrees(angle)` — wraps to [-180, 180]
+- `sprite.setAngle(degrees)` / `sprite.angle` — always degrees
+- `scene.physics.velocityFromAngle(degrees, speed, vec)` — degrees, 0 = east
+
+**Recommended pattern for Phaser sprite steering** (stay in degrees throughout):
+1. `Phaser.Math.Angle.Between(...)` → convert with `Phaser.Math.RadToDeg(...)` → `targetDeg`
+2. `diff = Phaser.Math.Angle.ShortestBetween(currentDeg, targetDeg)` → clamp → add to heading
+3. `Phaser.Math.Angle.WrapDegrees(heading)` → keep in [-180, 180]
+4. `sprite.setAngle(heading)` + `velocityFromAngle(heading, speed, body.velocity)`
+
 ## Usage
 Reference this profile in feature plans for SPA, browser game, and Vite-based web projects alongside `skills/typescript.md`.
