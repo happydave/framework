@@ -28,6 +28,8 @@ This repository contains meta-instructions - the governing standard for how feat
 - `Dispatch.md` — package context and instructions for a specialized agent session
 - `Discover.md` — investigate products, APIs, or technology domains
 - `Investigate.md` — diagnose runtime system behavior using observability data
+- `Triage.md` — turn a test/feedback dump into prioritized work items with root-cause hypotheses and flagged decisions
+- `RapidIteration.md` — the test→triage→fix-in-groups→reflect loop for exploratory and hardening work
 - `Plan.md` — produce a feature plan with enough detail for correct first-pass implementation
 - `Code.md` — implement incrementally from plans, maintaining an implementation log
 - `CodeReview.md` — cooperative human+AI merge request review of implementation artifacts
@@ -55,6 +57,7 @@ This repository contains meta-instructions - the governing standard for how feat
 
 - Project: `Create Project → Discover → Design → Design Review → Create Work Item(s)`
 - Work Item: `Plan → Plan Review → Code → Code Review → Test → Document → Reflect → Git Commit → Complete`
+- Rapid Iteration (exploratory/hardening): `Test → Triage → fix in groups → Reflect → Document` (loop; see `RapidIteration.md`)
 
 ## General Directives
 - NEVER narrate yourself, it can lead to excessive looping.
