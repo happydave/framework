@@ -43,6 +43,7 @@ This repository contains meta-instructions - the governing standard for how feat
 
 **skills**
 - `go.md` — Go module setup, tooling, conventions
+- `rust.md` — Rust + Bevy conventions: cargo gates, headless-crate (sub-crate) rule, feature gating
 - `typescript.md` — TypeScript hub: universal conventions + profiles for VS Code extensions and SPA/game/web (Docker-based builds)
 - `docker.md` — container-first build environment (`Dockerfile.dev` + `Makefile` pattern)
 - `markdown.md` — quality gates for Markdown artifacts (link checking, structure verification, spell checking)
