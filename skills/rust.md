@@ -31,6 +31,10 @@ These are the **build** and **test** steps the Code and Document actions rely on
 - One lockfile at the workspace root. Do not nest workspaces.
 - Crate and binary names are the implementer's choice unless user-visible or specified in the plan.
 
+## Architecture Documentation
+- Maintain a repo-root `ARCHITECTURE.md` (per `skills/documenting-architecture`): the LLM-oriented code map — version context, `Forbidden:`/`Required:` boundaries, a component index, and the primary data flow.
+- **Update it on structural change** — a crate added/removed/renamed, a cross-crate dependency or boundary changed, or a data-flow step added/removed — and include it in the **Document** pass of such work items, the same way the version bump is part of the **Code** pass. A stale architecture map is worse than none.
+
 ## Bevy Conventions
 - **Headless-crate rule (load-bearing).** A crate that must build and run without rendering — a simulation core, a headless server, anything intended for display-less environments — depends on the **Bevy sub-crates** it actually needs (`bevy_app`, `bevy_ecs`, `bevy_time`, `bevy_state`, ...), **never the `bevy` umbrella crate.**
   - Rationale: a workspace has a single instance of the umbrella `bevy`, and the resolver **unifies features across workspace members**. If any member (e.g., the windowed app) enables rendering, the umbrella gains `bevy_winit`/`bevy_render`/`wgpu`, and *every* crate depending on the umbrella inherits them — even under `cargo build -p <headless-crate>`. Depending on sub-crates keeps the headless crate's graph free of rendering regardless of what other members enable.
