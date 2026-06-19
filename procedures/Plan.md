@@ -35,6 +35,8 @@ Bad example (do not add invariants like this):
 
 **Required Behaviors & Verifications**
 Concise descriptions of required behavior and verifiable success criteria. Organize by major concern (user-visible actions, data flows, security/privacy, etc.). Use SHALL statements for must-have outcomes and include focused scenarios (Gherkin-style or numbered steps) that define "done." Cover at least: one happy path, one key failure mode, one security-relevant case.
+
+Tag each scenario by **verification mode**: `[automated]` (verifiable by tests or build/lint gates) or `[visual/manual]` (requires human confirmation, e.g. display-dependent rendering or UX). The Code and Complete actions use these tags to know which outcomes require human sign-off; a work item whose only unmet criteria are `[visual/manual]` is implementation-complete pending that confirmation, not ambiguously unfinished.
 Example:
 - SHALL allow new users to register with a valid email and strong password, then send a time-limited verification link.
 - SHALL reject registration attempts with duplicate emails (return 409 Conflict).
