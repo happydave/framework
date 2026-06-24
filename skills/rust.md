@@ -41,6 +41,7 @@ These are the **build** and **test** steps the Code and Document actions rely on
   - Cross-composition is safe: `bevy::app::App` is a re-export of `bevy_app::App`, so a `bevy_app::Plugin` defined in a sub-crate plugs into an umbrella-based application unchanged.
   - **Verify, don't assume:** `cargo tree -p <crate>` must show no `bevy_render`, `bevy_winit`, or `wgpu` for a crate claimed to be headless. Treat this as a runnable invariant.
 - **Organize simulation logic as Bevy `Plugin`s** so the same logic composes into headless and windowed apps.
+- **Scene/mode teardown: tag only the root.** For entities spawned for a transient scope (a UI panel, a render set, a game mode), put the despawn marker component on the **root** of each spawned tree only. `Children` is a `linked_spawn` relationship, so a recursive `despawn` of the root already removes its descendants; tagging children with the same marker makes the teardown system re-despawn already-dead entities and log a double-despawn warning on every transition.
 - **Gate dev-only tooling behind a cargo feature** (e.g., `dev`) so it is absent from default and release builds — applies to the Bevy Remote Protocol and any other debug/inspection plugins.
 - **Verify Cargo feature flags against source or examples, not by name.** Feature names collide across crates (e.g., a `http` feature may mean a web asset source in one crate and nothing to do with the remote-protocol transport you intended). Confirm the feature's actual effect from the dependency's `Cargo.toml`/examples before relying on it.
 
