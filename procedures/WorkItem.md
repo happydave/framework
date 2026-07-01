@@ -70,7 +70,7 @@ Include these when they are known and useful. Omit them when they are not:
 
 ## Procedure
 
-1. **Assign an ID** — read `docs/pending/next` to obtain the next available ID `N`. Write `N + 1` back to `docs/pending/next` before creating any files. If `docs/pending/next` does not exist, determine `N` by finding the highest-numbered existing folder in `docs/pending/` and adding one, then write `N + 1` to `docs/pending/next` before proceeding.
+1. **Assign an ID** — prefer tooling: `workflow-work-item-create` assigns the ID for you, and `workflow-work-item-next` reserves an ID (or a contiguous block via `count`) when you need one before creating the folder yourself. Both reconcile the counter against existing folders in `docs/pending/` and `docs/archive/`, so they cannot hand out a duplicate. **Only if tooling is unavailable**, assign manually: read `docs/pending/next` to obtain the next available ID `N`, write `N + 1` back before creating any files, and — because a stale counter is the classic cause of duplicate IDs — first confirm `N` is greater than every existing folder prefix in both `docs/pending/` and `docs/archive/`, using the highest such prefix + 1 if the counter has drifted behind.
 2. **Capture** — create `docs/pending/<N>-<name>/workitem.md` with at minimum the Title and Description. Err on the side of writing it down quickly rather than crafting it perfectly.
 3. **Contextualize** — if immediately obvious, add proposed changes and acceptance criteria. If not, leave them out — they belong in the planning phase, not the work item. **Do not invent acceptance criteria that were not stated or are not directly implied by the description.** Criteria not grounded in the description add scope without adding value and distort planning later.
 
