@@ -19,6 +19,19 @@ The exact mechanism for versioning depends on the project's language and tooling
 
 - **TypeScript / Node.js**: Increment the `version` field in `package.json`.
 
+## Regenerate the Lock File
+When the manifest version is bumped, **regenerate the project's lock file and include it in
+the same commit.** Bumping the manifest alone leaves the lock file's own version field
+stale, so the manifest and lock drift apart over successive work items.
+
+- **TypeScript / Node.js**: after editing `package.json`, run the lock-regeneration target
+  (e.g. `make install`, which wraps `npm install`) so `package-lock.json` picks up the new
+  version, and stage the lock alongside the manifest. Verify the resulting lock diff is
+  version-field-only (no unexpected dependency churn) before committing.
+- Projects that version via tooling which already rewrites the lock (e.g. Cargo, where
+  `Cargo.lock` regenerates on the next build) still SHALL commit the regenerated lock with
+  the version bump — do not defer it to a later commit.
+
 ## Exemptions
 
 ### Go Projects
