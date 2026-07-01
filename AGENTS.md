@@ -63,3 +63,4 @@ This repository contains meta-instructions - the governing standard for how feat
 ## General Directives
 - NEVER narrate yourself, it can lead to excessive looping.
 - ALWAYS use the `todo` tool (when available) rather than chat.
+- **Read docs in full.** When you open a `workflow` doc or a project doc under `/home/dave/Documents/tickets`, read the entire file rather than a partial range. This applies to documentation only — **not** source code, which may contain very large files that are read selectively. "Read in full" is per-file: each doc you open is read whole; it does not mean every file in a tree must be opened. Files merely referenced by another doc are read only when directly relevant to the task.
