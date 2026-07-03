@@ -22,9 +22,10 @@ These are the **build** and **test** steps the Code and Document actions rely on
 
 - **Build:** `cargo build`. When a crate has meaningful cargo features (e.g., a `dev` feature), build each relevant configuration (`cargo build`, `cargo build --features dev`).
 - **Test:** `cargo test` (whole workspace) or `cargo test -p <crate>` for a targeted crate.
-- **Format gate (build):** `cargo fmt --all --check` must pass with no diff.
+- **Format gate (build):** `cargo fmt --all --check` must pass with no diff. Run `cargo fmt --all` *before* the first `--check`, and expect rustfmt to **reorder `mod` declarations alphabetically** (`reorder_modules` is on by default) — a hand-placed module line in the wrong alphabetical slot will move.
 - **Lint gate (build):** `cargo clippy --all-targets` must be clean; lint each meaningful feature configuration too (e.g., `cargo clippy -p <crate> --features dev`).
 - Run the format and lint gates before considering changes complete. Prefer running a targeted `cargo test -p <crate>` after non-trivial edits to catch errors early.
+- **When capturing gate evidence, run each gate as a discrete command** and check its exit status directly. A `&&`/pipe chain mislabels results: a pipeline's `$?` reflects the last pipe stage (e.g. `head`), and a failed early gate silently skips later ones while the output can read as if they ran.
 
 ## Workspace & Project Setup
 - Prefer a **cargo workspace** (a virtual root manifest with `members`) once a project has more than one crate. Share versions and dependency versions via `[workspace.package]` and `[workspace.dependencies]`; member crates use `version.workspace = true` and `<dep> = { workspace = true }`.
