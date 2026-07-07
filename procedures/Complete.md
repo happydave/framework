@@ -33,3 +33,10 @@ If a `Completed Date` or similar metadata field is used in the project, update t
 ### 3. Update Project
 
 Update the work item status in the project doc (if a project is specified).
+
+If this completion **closes a design line or milestone** (its last work item is now complete),
+move that line's completed rows and version-history prose from the project's anchor document
+into the project's history log **in the same edit**, leaving the anchor a one-line summary +
+history link. Anchors carry open work; history carries done work — offloading at the closure
+boundary keeps the anchor from silently re-accumulating (the failure mode is rows accreting
+until a project assessment forces a cleanup).
