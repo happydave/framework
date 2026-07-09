@@ -46,6 +46,7 @@ The rules focus on unambiguous setup and tooling behavior so AI-generated code r
 - Run `go vet` after all changes.
 - **Verification after Edits:** Always run `go vet` (or the project's equivalent build/verification step) after any non-trivial `replace_string_in_file` operation. This ensures that syntax errors introduced by automated edits (e.g., shell interpolation issues) are caught immediately before further implementation or testing.
 - If available run `golangci-lint` before considering changes complete.
+- **errcheck and `io.Writer`:** errcheck's default exclusions silence unchecked writes to the concrete `os.Stdout`/`os.Stderr`, but *not* writes to an `io.Writer` value. A testable CLI whose core takes writer parameters (e.g. `run(args []string, stdout, stderr io.Writer) int`) will therefore be flagged on every `fmt.Fprintln`/`Fprintf` even though the equivalent code writing to `os.Stderr` directly passes. Prefer routing output through small helpers that explicitly discard the unrecoverable write error — e.g. `func fprintln(w io.Writer, a ...any) { _, _ = fmt.Fprintln(w, a...) }` — which centralizes the discard rather than scattering `_, _ =` or `//nolint` across call sites.
 
 ## Coding Conventions (Defaults)
 - Package names: lowercase, single word, no underscores.
