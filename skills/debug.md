@@ -50,6 +50,7 @@ Per `skills/evidence.md`, agents are prone to finding what they expect.
     -   The agent proposes a fix that "should work" but hasn't been verified with a passing test.
     -   The agent is stuck in a loop of 3+ unsuccessful attempts at the same bug.
 -   **Verification Gate**: For any finding labeled **Confirmed**, the agent must provide a "Before" and "After" log snippet or screenshot link showing the transition from failure to success.
+-   **Recall is not evidence**: A claim about an artifact's contents — what a function returns, what a config file sets, what a document says — is verified by opening the artifact, not by recollection. A remembered fact is a hypothesis; an opened file is a finding. This bias is strongest where the agent is *most* fluent, because a familiar pattern supplies a plausible answer without the artifact ever being read. `Plan.md` states this as the **Open-and-verify** rule for planning; it applies equally to any claim an agent makes about code it has not just read.
 
 ## 4. Self-Refinement Loop (Self-Refine)
 

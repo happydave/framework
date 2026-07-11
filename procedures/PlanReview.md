@@ -58,6 +58,8 @@ The Reviewer assesses the plan across these dimensions:
 
 **Precision** — are terms specific and unambiguous? Flag vague language like "appropriate" or "as needed" in critical sections (Invariants, Behaviors, Edge Cases, Data Changes).
 
+Precision is accuracy as well as clarity. Where the plan makes a concrete claim about existing code, content, or data, spot-check a sample of those claims against the artifact each one cites or describes — `Plan.md` requires the planner to have opened it (see its **Open-and-verify** rule), and this is the gate that checks they did. A claim that is precise but false is Blocking: unlike vagueness, which an implementer will notice and question, a confident wrong claim propagates silently into the implementation.
+
 **Scope Alignment** — does the plan stay within the mandate of the originating `workitem.md`? Distinguish reasonable deductions from purely opportunistic additions.
 
 **Compliance** — does the plan conflict with any applicable `skills/[language].md` rules? Plans may override applicable guideline rules when explicitly documented in the plan itself. The Reviewer checks for two things: (a) whether a conflict exists, and (b) whether the plan explicitly acknowledges and justifies the override. Unjustified conflicts remain Blocking; explicit overrides with justification are Non-blocking structural observations unless they violate an Invariant.

@@ -137,11 +137,16 @@ These are not sequential phases — they are aspects of planning that apply thro
 
 **Research & Elaborate** — investigate technical feasibility, domain details, data flows, security/privacy needs, resource needs, risks, and non-functional requirements. Aggressively capture all findings directly into `plan.md`. Draft high-level invariants and goals. Refine descriptive outcomes (no code). This is intended as deep scrutiny to ensure the feature plan has sufficient detail to implement confidently and correctly. Avoid "double dipping" by documenting findings in the file rather than explaining them in chat.
 
+**Open-and-verify** — a standing discipline within Research & Elaborate, checked again at Critically Assess: every concrete factual claim about existing code, content, or data must trace to a file opened during this planning session. This governs survey findings, required behaviors, and scenarios — if the plan asserts what a function returns, what a data file contains, which comment pins a value, or what a scenario will observe from shipped content, open that artifact and confirm the assertion before writing it down.
+
+Recall and pattern-matching are a starting point, never the last step before a claim lands in the plan. A remembered fact is a hypothesis; an opened file is a finding. Claims about artifacts that do not yet exist are exempt — nothing can be opened — so this rule binds assertions about what is already there, which is precisely where a confident-but-stale memory does its damage.
+
 **Test (Descriptive)** — describe validation approaches: expected behaviors, failure modes, edge case scenarios, and thought experiments that confirm the plan is sound. No code or tests written — this is descriptive verification of the plan itself.
 
 **Critically Assess** — check for gaps, ambiguity, contradictions, over- or under-scoping.
 - Invariants are provably true, contain no unstated assumptions, and don't implicitly contradict other invariants
 - Behaviors and verifications are sufficient to confirm correctness without guesswork
+- Every concrete claim about existing code, content, or data was verified against an opened file this session, not written from recall (see **Open-and-verify** above)
 
 **Refine** — after any significant decisions, discoveries, or plan changes, apply another round of assessment and critical assessment to ensure the whole plan remains cohesive and consistent. Planning is not a single pass — it converges through iteration.
 
