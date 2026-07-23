@@ -8,10 +8,22 @@ no conversational follow-up** — everything it needs must be inlined in one pro
 returns must arrive in one reply.
 
 WebResearch is the external-landscape counterpart to `Dispatch.md`: Dispatch hands a workflow
-procedure to an agent that can read the repo; WebResearch hands *questions* to a session that can
-read the web. Until direct tool integration exists, the transport is human copy-paste — exactly two
-operations per round (brief into the session, reply into a file), so the procedure minimizes
-mid-round back-and-forth by design.
+procedure to an agent that can read the repo; WebResearch hands *questions* to a researcher that
+can read the web. Two transports execute a round; both consume the same brief and produce the same
+verbatim-archived reply:
+
+- **The `researcher` subagent** (`agents/researcher.md`, linked at `~/.claude/agents/`) — the
+  default. Tool-restricted to WebSearch/WebFetch only, so injected web content cannot reach files
+  or shell and raw pages never enter the orchestrating session's context; its prompt bakes in this
+  procedure's evidence labels. The orchestrating session passes the brief as the task prompt and
+  archives the reply itself.
+- **An external web-enabled AI session** via human copy-paste — exactly two operations per round
+  (brief into the session, reply into a file). Use when a round warrants a heavier researcher than
+  the subagent, or when no subagent runtime is available.
+
+Either way the researcher has no filesystem access and no conversational follow-up — everything it
+needs must be inlined in one prompt, and everything it returns must arrive in one reply, so the
+procedure minimizes mid-round back-and-forth by design.
 
 ## When to use WebResearch
 
@@ -52,9 +64,9 @@ later round re-touches an earlier claim.
 
 Structure, in order (see the storage section above for worked examples):
 
-1. **Header** (above a horizontal rule; ours, not part of the prompt): round number, target,
-   generated date, and the exact paste-destination path for the reply. Then the rule — everything
-   below it is the prompt, one select-to-end copy.
+1. **Header** (above a horizontal rule; ours, not part of the prompt): round number, transport
+   (researcher subagent or external session), generated date, and the exact paste-destination path
+   for the reply. Then the rule — everything below it is the prompt, one select-to-end copy.
 2. **Opener** — a polite, complete request ("Please provide a thorough, current (<month year>)
    research pass on **<subject>** …"), never a bare imperative, plus an instruction to research
    fresh rather than rely on trained knowledge.
@@ -101,8 +113,12 @@ Tell the researcher the reply is archived verbatim and read later by another AI,
 
 ### 5. Execute
 
-Persist the brief, then hand off: the user copies everything below the rule into the researcher
-session as one message, and pastes the reply verbatim into the stated destination file.
+Persist the brief, then execute by transport:
+
+- **Researcher subagent (default):** pass everything below the rule as the agent's task prompt,
+  then write its reply verbatim to the stated destination file.
+- **External session:** the user copies everything below the rule into the researcher session as
+  one message, and pastes the reply verbatim into the stated destination file.
 
 ### 6. Harvest
 
@@ -119,7 +135,7 @@ session as one message, and pastes the reply verbatim into the stated destinatio
 
 ## Required Content in the Brief Artifact
 
-- **Header**: round/series position, target session type, generated date, paste-destination path.
+- **Header**: round/series position, transport, generated date, paste-destination path.
 - **The prompt**: everything below the rule, self-contained per steps 2–4.
 
 ## Guidance
