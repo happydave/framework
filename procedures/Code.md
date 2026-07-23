@@ -72,7 +72,7 @@ A change is not complete until both the code changes AND the corresponding `code
 When all features are implemented:
 
 - Run the verification steps (build and test procedures) defined by the applicable guidelines identified in step 1.
-- Confirm clean results for each verification step.
+- Confirm clean results for each verification step. Per `skills/evidence.md`, a passing gate confirms the gate, not necessarily the outcome: for an acceptance criterion that produces an artifact, inspect the artifact itself (an `[agent]`-tagged criterion, per `Plan.md`, is the agent's to verify and close — do not defer it as if it needed the owner).
 - **Increment the project version following the policy in `skills/versioning.md`.**
 - Ensure `code.md` is up to date — every completed change must have a corresponding log entry, and "Final Status" must be populated. If entries are missing, go back and fill them before proceeding.
 

@@ -62,5 +62,5 @@ All findings in `test.md` must be addressed:
 ## Guidance
 
 - **Negative Testing**: Always include test cases for invalid input, error states, and boundary conditions.
-- **Evidence-Based**: Where possible, include logs, screenshots, or command output in `test.md` (referencing `Evidence.md` for formatting).
+- **Evidence-Based**: Where possible, include logs, screenshots, or command output in `test.md`. Apply `skills/evidence.md`: report each result at the confidence the evidence supports, and remember that passing automated metrics does not verify a result until the artifact behind it is examined (a build that produces a file with the right shape can still produce the wrong file).
 - **No Guesswork**: If it's unclear how to test a specific component, refer back to the `Discover` procedure or ask the user for clarification.

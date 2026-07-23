@@ -25,8 +25,10 @@ This repository contains meta-instructions - the governing standard for how feat
 - `GitCommit.md` — stage and commit changes; no-op if the working directory is not a git repository
 - `GitMerge.md` — plan and execute branch merges: survey divergence, select strategy, execute, record outcome
 - `SideQuest.md` — execute and document one-off tasks with minimal overhead
+- `Spike.md` — answer one feasibility/cost/design question with a throwaway build and a recorded verdict
 - `Dispatch.md` — package context and instructions for a specialized agent session
 - `Discover.md` — investigate products, APIs, or technology domains
+- `WebResearch.md` — package single-shot research briefs for web-enabled AI sessions and harvest the replies
 - `Investigate.md` — diagnose runtime system behavior using observability data
 - `Triage.md` — turn a test/feedback dump into prioritized work items with root-cause hypotheses and flagged decisions
 - `RapidIteration.md` — the test→triage→fix-in-groups→reflect loop for exploratory and hardening work
@@ -59,6 +61,7 @@ This repository contains meta-instructions - the governing standard for how feat
 - Project: `Create Project → Discover → Design → Design Review → Create Work Item(s)`
 - Work Item: `Plan → Plan Review → Code → Code Review → Test → Document → Reflect → Git Commit → Complete`
 - Rapid Iteration (exploratory/hardening): `Test → Triage → fix in groups → Reflect → Document` (loop; see `RapidIteration.md`)
+- Spike (settle one question before planning): `Work Item → Design → Execute → Verdict → Reflect` (single `spike.md`; see `Spike.md`)
 
 ## General Directives
 - NEVER narrate yourself, it can lead to excessive looping.

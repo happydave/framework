@@ -55,7 +55,7 @@ Produce a brief **change summary** grouping files by category. Flag any changes 
 
 Assess all substantive changes across these dimensions:
 
-**Correctness** — does the implementation match what the plan specifies? Check requirements, invariants, and acceptance criteria explicitly. Note any gaps between what was planned and what was built.
+**Correctness** — does the implementation match what the plan specifies? Check requirements, invariants, and acceptance criteria explicitly. Note any gaps between what was planned and what was built. Per `skills/evidence.md`, do not accept a passing metric as proof a result is correct: where a criterion produces an artifact (a rendered output, a generated file, a document), the review is not complete until that artifact has been examined, not just its summary counts. An `[agent]`-tagged criterion (see `Plan.md`) is one the review is expected to verify this way.
 
 **Safety** — does the change introduce risk? Consider: security vulnerabilities, data loss scenarios, race conditions, inconsistent state, irreversible side effects.
 

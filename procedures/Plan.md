@@ -36,7 +36,16 @@ Bad example (do not add invariants like this):
 **Required Behaviors & Verifications**
 Concise descriptions of required behavior and verifiable success criteria. Organize by major concern (user-visible actions, data flows, security/privacy, etc.). Use SHALL statements for must-have outcomes and include focused scenarios (Gherkin-style or numbered steps) that define "done." Cover at least: one happy path, one key failure mode, one security-relevant case.
 
-Tag each scenario by **verification mode**: `[automated]` (verifiable by tests or build/lint gates) or `[visual/manual]` (requires human confirmation, e.g. display-dependent rendering or UX). The Code and Complete actions use these tags to know which outcomes require human sign-off; a work item whose only unmet criteria are `[visual/manual]` is implementation-complete pending that confirmation, not ambiguously unfinished.
+Tag each scenario by **verification mode** — the axis is *who can supply the verdict*:
+- `[automated]` — a deterministic gate decides it: a test, a build, a lint, a schema check. Repeatable, pass/fail, no judgment.
+- `[agent]` — no deterministic gate exists, but the agent can gather and judge the evidence itself by **inspecting the artifact**: reading a generated image or video frames, reading rendered output, diffing files, examining a produced document. Requires judgment, but the agent can supply it.
+- `[human]` — requires the **owner**: aesthetic taste, a product or design call, physical hardware, hearing audio, playing the game, or a decision that is theirs to make. The agent cannot substitute for it.
+
+The Code and Complete actions use these tags to know which outcomes the agent can close itself and which need the owner. **`[agent]` checks are the agent's responsibility to perform and close** — an unmet `[agent]` criterion is unfinished work, not a sign-off waiting on the owner, and must not be deferred as if it were. A work item whose only unmet criteria are `[human]` is implementation-complete pending that confirmation, not ambiguously unfinished.
+
+Choosing `[human]` when `[agent]` would do is a real failure mode: it defers to the owner a check the agent could have run, and it lets a result that *looks* right on automated metrics pass without anyone inspecting the artifact. If you can look at the thing, tag it `[agent]` and look.
+
+**Migration note.** The prior two-way scheme used `[visual/manual]` for everything non-automated. An existing `[visual/manual]` tag should be read as `[human]` by default (the conservative reading); re-triage it to `[agent]` opportunistically when the check is in fact one the agent can perform by inspection.
 Example:
 - SHALL allow new users to register with a valid email and strong password, then send a time-limited verification link.
 - SHALL reject registration attempts with duplicate emails (return 409 Conflict).
@@ -139,7 +148,7 @@ These are not sequential phases — they are aspects of planning that apply thro
 
 **Open-and-verify** — a standing discipline within Research & Elaborate, checked again at Critically Assess: every concrete factual claim about existing code, content, or data must trace to a file opened during this planning session. This governs survey findings, required behaviors, and scenarios — if the plan asserts what a function returns, what a data file contains, which comment pins a value, or what a scenario will observe from shipped content, open that artifact and confirm the assertion before writing it down.
 
-Recall and pattern-matching are a starting point, never the last step before a claim lands in the plan. A remembered fact is a hypothesis; an opened file is a finding. Claims about artifacts that do not yet exist are exempt — nothing can be opened — so this rule binds assertions about what is already there, which is precisely where a confident-but-stale memory does its damage.
+Recall and pattern-matching are a starting point, never the last step before a claim lands in the plan. A remembered fact is a hypothesis; an opened file is a finding. Claims about artifacts that do not yet exist are exempt — nothing can be opened — so this rule binds assertions about what is already there, which is precisely where a confident-but-stale memory does its damage. Apply `skills/evidence.md` to survey claims: label them by confidence, and treat a number inherited from another document, task, or measurement as a Hypothesis until it is confirmed for *this* task (a result measured for one task does not automatically bound a different task that resembles it).
 
 **Test (Descriptive)** — describe validation approaches: expected behaviors, failure modes, edge case scenarios, and thought experiments that confirm the plan is sound. No code or tests written — this is descriptive verification of the plan itself.
 

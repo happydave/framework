@@ -31,7 +31,7 @@ Each pass is a **batch, not a pipeline run**. You are not carrying one item end 
 end; you are cycling the whole set.
 
 Entry condition: something runnable must already exist. The loop **sustains**
-iteration; it does not initiate a project (build a prototype/spike first).
+iteration; it does not initiate a project (build a prototype or run `Spike.md` first).
 
 ### Steps
 

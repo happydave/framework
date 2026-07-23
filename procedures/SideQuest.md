@@ -10,7 +10,9 @@ SideQuests are for when the overhead of planning exceeds the value of the work i
 
 - One-off scripting, data cleanup, or minor refactoring.
 - Quick bug fixes that are trivial and carry negligible risk.
-- Isolated research or spikes that don't warrant a full `Discover` or `Investigate` lifecycle.
+- Isolated research too trivial to warrant a `Discover`, `Investigate`, or `Spike` lifecycle. (A
+  question with a real feasibility/cost answer and a design that matters belongs in `Spike.md`, not
+  here — a mis-designed quick experiment measures the wrong thing convincingly.)
 - Random tasks that "just need to get done."
 
 DO NOT use SideQuest for:
