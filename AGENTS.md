@@ -54,6 +54,7 @@ This repository contains meta-instructions - the governing standard for how feat
 - `claude-code.md` — Claude Code CLI usage reference for task delegation and automated operations
 - `debug.md` — AI agent debugging methodology (structured hypothesis generation, bias mitigation)
 - `evidence.md` — evidence assessment rules (Hub for Logs, Metrics, Groundcover)
+- `authoring-skills.md` — how we write skills: directive not narrative, application-tested; synthesizes superpowers `writing-skills` + tickets `creating-skills`
 
 
 ## Typical Pipelines
