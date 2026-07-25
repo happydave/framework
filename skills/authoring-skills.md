@@ -43,7 +43,9 @@ skills — not discipline-enforcing gates.
 ## Verify before done (required)
 
 **Application-test with a fresh subagent:** give it *only* the skill + a realistic task; confirm it produces
-the right result **and** ask it to surface gaps. **Pass = a correct result and every correctness gap fixed**
+the right result **and** ask it to surface gaps. Choose a task that makes the skill's own quality bars
+(evidence rules, output conventions, thresholds) load-bearing — a task the agent can complete while
+ignoring them tests nothing. **Pass = a correct result and every correctness gap fixed**
 (threshold/cosmetic nits optional). It catches missing examples, contradictions, and undocumented inputs
 that self-review misses. This is a reference-level test — **not** the superpowers Iron-Law /
 RED-GREEN-REFACTOR ceremony, which is for skills that enforce discipline under pressure.
