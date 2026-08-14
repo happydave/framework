@@ -39,6 +39,10 @@ Key rules (see `skills/docker.md` for full details):
 ## Testing Guidelines
 
 - **Standard Tooling:** Projects should use established frameworks (e.g., `jest`, `mocha`, `vitest`). All test runs must be wrapped in a `make test` target.
+- **Assert the Exact Property Claimed:** A test must assert the exact property its name or intent claims — never a proxy that the intended bug would still pass. Before calling a test done, ask: what implementation error is this test's name promising to catch, and would that error actually fail this assertion? Known proxy traps:
+    - **Determinism:** same-input repetition only proves idempotence — an implementation that ignores its seed still passes. Include a different-seed-diverges case alongside the same-seed-repeats case (use seed pairs verified to produce different output — distinct seeds may legitimately collide).
+    - **Boundary/clamp:** test at the edge and at saturation (inputs that actually reach the clamp), not an interior value the clamp never touches.
+    - **Ordering/safety writes** (e.g., "backs up before overwriting"): record and assert the operation sequence, not just the end state — the end state can be reached in an unsafe order.
 - **String Manipulation Logic:** When testing code that involves truncation, splitting, or buffering of large strings:
     - **Structural Markers:** Ensure test data contains necessary structural markers (like newlines `\n` or delimiters) at expected intervals. Logic can fail silently or yield "zero-result" cases if the test string is a single monolithic block but the logic expects multi-line input.
     - **Marker Density:** Verify that the "density" of markers in test strings is sufficient to exercise boundary conditions (e.g., a newline exactly at the truncation limit).
