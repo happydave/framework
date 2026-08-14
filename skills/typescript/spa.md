@@ -15,6 +15,8 @@ Extends [`skills/typescript.md`](../typescript.md) with Vite-based SPA, browser 
 | `make dev` | see below | Start Vite dev server (interactive, port-forwarded) |
 | `make build` | `$(DOCKER) npm run build` | Production bundle via `vite build` |
 | `make compile` | `$(DOCKER) npm run compile` | Type-check only; no output files |
+| `make lint` | `$(DOCKER) npm run lint` | eslint over `src/` (code rules, import boundaries) |
+| `make test` | `$(DOCKER) npm run test` | Vitest single-pass run (`vitest run`) |
 | `make clean` | *(runs on host)* `rm -rf node_modules dist` | Remove build artifacts |
 
 ### `make dev` — Docker invocation

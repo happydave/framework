@@ -56,6 +56,7 @@ Key rules (see `skills/docker.md` for full details):
 - **Prefer `const`** over `let`. Never use `var`.
 - **Error handling:** Catch specific errors where possible. Do not silently swallow errors — log them or re-throw.
 - **Imports:** Use named imports. Avoid `import *` unless the profile or project convention requires it.
+- **Deterministic code:** where code is required to be deterministic (simulation cores, replay or seeded systems), ban ambient nondeterminism — `Math.random`, `Date.now`, `new Date()` — in the lint config (e.g., eslint `no-restricted-properties` / `no-restricted-syntax`, scoped to the deterministic directories), not only in review. Time and randomness enter such code as injected inputs.
 
 ## Security & Safety Invariants
 
