@@ -31,6 +31,8 @@ The agent reads `AGENTS.md` at the start of each session and consults the refere
 
 **New project:** Create Project → Discover → Design → Design Review → Create Work Items
 
+**Intake:** Capture (`docs/intake/`) → Triage → Work Item(s) or declined
+
 **Work item:** Plan → Plan Review → Code → Code Review → Test → Document → Reflect → Git Commit → Complete
 
 **Quick chore:** SideQuest (single execution + audit doc, no planning phase)

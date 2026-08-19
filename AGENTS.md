@@ -20,6 +20,7 @@ This repository contains meta-instructions - the governing standard for how feat
 - `Project.md` — create and manage high-level initiatives
 - `Design.md` — architectural blueprint for projects
 - `DesignReview.md` — independent evaluation of designs
+- `Intake.md` — zero-friction capture of raw ideas, observations, and dumps into the intake inbox for later triage
 - `WorkItem.md` — create and manage work items
 - `BugReport.md` — capture a defect as a structured work item with reproduction context
 - `GitCommit.md` — stage and commit changes; no-op if the working directory is not a git repository
@@ -30,7 +31,7 @@ This repository contains meta-instructions - the governing standard for how feat
 - `Discover.md` — investigate products, APIs, or technology domains
 - `WebResearch.md` — package single-shot research briefs for web-enabled AI sessions and harvest the replies
 - `Investigate.md` — diagnose runtime system behavior using observability data
-- `Triage.md` — turn a test/feedback dump into prioritized work items with root-cause hypotheses and flagged decisions
+- `Triage.md` — turn the intake queue or a test/feedback dump into prioritized work items with root-cause hypotheses and flagged decisions
 - `RapidIteration.md` — the test→triage→fix-in-groups→reflect loop for exploratory and hardening work
 - `Plan.md` — produce a feature plan with enough detail for correct first-pass implementation
 - `Code.md` — implement incrementally from plans, maintaining an implementation log
@@ -60,6 +61,7 @@ This repository contains meta-instructions - the governing standard for how feat
 ## Typical Pipelines
 
 - Project: `Create Project → Discover → Design → Design Review → Create Work Item(s)`
+- Intake: `Capture (docs/intake/) → Triage → Work Item(s) or declined` (see `Intake.md`)
 - Work Item: `Plan → Plan Review → Code → Code Review → Test → Document → Reflect → Git Commit → Complete`
 - Rapid Iteration (exploratory/hardening): `Test → Triage → fix in groups → Reflect → Document` (loop; see `RapidIteration.md`)
 - Spike (settle one question before planning): `Work Item → Design → Execute → Verdict → Reflect` (single `spike.md`; see `Spike.md`)

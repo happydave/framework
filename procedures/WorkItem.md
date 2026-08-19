@@ -2,19 +2,19 @@
 
 ## Intent
 
-Capture a potential work item — a feature idea, bug report, improvement, or observation — as a lightweight record in a centralized `docs/pending/` directory. Work items are intake documents, not plans. They preserve enough context for later triage and planning without requiring deep analysis at the time of creation.
+Record an accepted, atomized unit of work — one feature, one fix, one improvement — as a lightweight record in a centralized `docs/pending/` directory. Work items are not plans. They preserve enough context for later planning without requiring deep analysis at the time of creation.
 
-Work items may originate from any source: an external issue tracker, a conversation, a problem encountered during implementation, or an idea that surfaces opportunistically during unrelated work. The goal is to capture it before the context is lost.
+A work item in `docs/pending/` means the work has been vetted: someone decided it should happen. Raw, unvetted, or un-atomized input — ideas in passing, feedback dumps, thoughts tangled together — belongs in the intake inbox (`Intake.md`), where capture is free and triage (`Triage.md`) decides what becomes a work item.
 
 ## When to Create a Work Item
 
-- A feature idea or enhancement is identified
-- A bug or unexpected behavior is discovered during testing or usage
-- An external request or issue needs to be tracked
-- A project design is being decomposed into actionable steps
-- Any time the thought "we should do X" arises and X is not already tracked
+Work items enter the backlog by three paths:
 
-Do not defer capture. A brief work item written now is more valuable than a detailed one never written.
+- **Triage promotion** — triage (`Triage.md`) atomizes and accepts an item from the intake inbox or a feedback dump (`Intake.md`).
+- **Project decomposition** — a project design is broken down into actionable steps (`Project.md`).
+- **Direct creation** — the work arrives already scoped and accepted: an explicit request, a structured defect capture (`BugReport.md`), or a validated follow-up from a Reflect action.
+
+If the thought is raw, unvetted, or tangled with other ideas, do not force it into a work item — drop a line in the intake inbox instead (`Intake.md`). Capture urgency lives there; the backlog stays vetted.
 
 ## Document Storage & Naming
 
@@ -65,7 +65,7 @@ Include these when they are known and useful. Omit them when they are not:
 - **Proposed Changes** — a brief sketch of what might be built. This is a starting point for planning, not a commitment.
 - **Acceptance Criteria** — conditions that would confirm the work is done. Keep these outcome-oriented, not implementation-specific.
 - **Target Project** — which project will contain the implementation work; defaults to the capturing project when omitted or empty. Supports multiple targets via comma-separated listing, though one work item per project is recommended for clarity. This field can be safely omitted when the work item originates inside the target project.
-- **Source** — where the work item originated (external issue URL, implementation log reference, conversation summary) if it helps preserve context.
+- **Source** — where the work item originated (external issue URL, implementation log reference, conversation summary) if it helps preserve context. Do not reference intake file paths — intake files move to `docs/intake-processed/` when processed and already record what they spawned; text search covers the rare need to trace back.
 - **Reference Docs** - API documentation or similar if available.
 
 ## Procedure
@@ -76,7 +76,7 @@ Include these when they are known and useful. Omit them when they are not:
 
 ## Guidance
 
-- Work items are not plans. They do not need to meet the standard of a feature plan document. They exist to prevent ideas and problems from falling through the cracks.
+- Work items are not plans. They do not need to meet the standard of a feature plan document. They record accepted work with just enough context to plan it later.
 - Keep work items short. A work item that takes more than five minutes to write is probably trying to be a plan.
 - Do not duplicate external issue trackers verbatim. Summarize the relevant context in the project's own terms.
 - Acceptance criteria in work items are intentionally lighter than in feature plans. They answer "how would we know this is done?" not "what are all the edge cases?"
