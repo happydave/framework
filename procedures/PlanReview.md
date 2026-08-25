@@ -4,7 +4,7 @@
 
 Critically assess a plan document to ensure it is sufficient to guide correct implementation on first attempt. The output is a structured set of observations — concerns, questions, and recommendations — that identifies gaps, contradictions, or ambiguities before implementation begins.
 
-Plan Review is an *external* quality gate that provides an independent evaluation of the plan document before implementation begins.
+Plan Review is a *preferably external* quality gate that provides an independent evaluation of the plan document before implementation begins.  If no external reviewer is available, please complete it directly.
 
 ## Roles
 
