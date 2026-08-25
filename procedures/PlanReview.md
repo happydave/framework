@@ -4,7 +4,7 @@
 
 Critically assess a plan document to ensure it is sufficient to guide correct implementation on first attempt. The output is a structured set of observations — concerns, questions, and recommendations — that identifies gaps, contradictions, or ambiguities before implementation begins.
 
-Plan Review is a *preferably external* quality gate that provides an independent evaluation of the plan document before implementation begins.  If no external reviewer is available, please complete it directly.
+Plan Review is a *preferably external* quality gate. Its evaluation is independent in the sense that matters: independent of the plan's own reasoning, not necessarily performed by a second party. If no external reviewer is available, the same agent SHALL perform the review itself in the same session — a **self-applied** review. The gate is never skipped; "no reviewer available" is not a disposition. See **Self-Applied Review** for how the two-party protocol collapses to one agent.
 
 ## Roles
 
@@ -22,6 +22,20 @@ Plan Review is a *preferably external* quality gate that provides an independent
 - Provides the plan and any context not captured within it (stakeholder constraints, technical limitations, etc.).
 - Clarifies uncertain findings the Reviewer cannot resolve from the plan alone.
 - Addresses findings and revises the plan until it reaches a Complete state.
+
+## Self-Applied Review
+
+When no external reviewer is available, the plan's author performs the review in the same session. The dimensions, the findings tiers, and the `planreview.md` artifact are identical to an external review; only the role assignments collapse. Under self-application:
+
+- "Stops and notifies the requester" means surfacing to the human owner — the requester is the owner in both modes.
+- The Revision Cycle Protocol applies unchanged: each self-revision is a real edit to `plan.md` addressing all Blocking findings, and three failed cycles still escalate to the owner as Significant Findings.
+- Step 5's Author-availability clause (confirm or dismiss uncertain findings from domain knowledge) is external-review only. Its purpose is to let the Author supply context the Reviewer lacked; a self-reviewer already holds all of the author's context, so uncertainty that survives it is genuine and cannot be cleared by asserting the author's availability.
+
+Self-review's characteristic failure mode is rubber-stamping — a reviewer inclined to confirm the plan it just wrote. Three countermeasures are mandatory:
+
+1. `planreview.md` SHALL record the review mode (`external` or `self-applied`) so a later reader can weight the findings.
+2. The Precision spot-check SHALL be performed and its sample recorded in the artifact — which claims were checked against which opened files. It is the most bias-resistant step in the review because it is factual rather than judgmental.
+3. Uncertain findings SHALL NOT be resolved in the plan's favor by default (see Reporting).
 
 ## Procedure
 
@@ -70,7 +84,7 @@ The Reviewer organizes findings into two tiers:
 - **Blocking** — must be resolved before proceeding: missing sections, contradictions, scope inflation, or ambiguity in critical sections.
 - **Non-blocking** — worth addressing but implementation may continue: minor ambiguity in non-critical sections, partially-filled optional sections, or structural observations.
 
-Flag findings as **uncertain** when they depend on intent or context the Reviewer cannot fully determine. When the Reviewer flags a finding as uncertain and no human oversight is available, the finding defaults to **Blocking**. The `planreview.md` output SHALL list all uncertain findings separately with their disposition so they are visible.
+Flag findings as **uncertain** when they depend on intent or context the Reviewer cannot fully determine. An uncertain finding defaults to **Blocking** unless a human adjudicates it. Under a self-applied review, the author's presence in the session does not constitute adjudication: a Blocking uncertain finding is resolved the way any Blocking finding is — revise the plan so the uncertainty no longer exists, or hold it for the owner. It SHALL NOT be resolved in the plan's favor by default. The `planreview.md` output SHALL list all uncertain findings separately with their disposition so they are visible.
 
 ### 5. Judgment and Refinement
 
@@ -79,13 +93,13 @@ Flag findings as **uncertain** when they depend on intent or context the Reviewe
 - Each resubmission SHALL address all Blocking findings and note how Non-blocking findings were handled (addressed, deferred with rationale, or acknowledged).
 - If three revisions have occurred and the plan still has unresolved Blocking findings, Status defaults to **Significant Findings** and the matter is escalated for human decision on whether to continue planning, reduce scope, or close the work item.
 
-If the Author is available to address uncertain findings:
+If the review is external and the Author is available to address uncertain findings (inoperative under self-application — see Self-Applied Review):
 - Confirm or dismiss uncertain findings based on domain knowledge and project context.
 - Identify anything the Reviewer missed (e.g., organizational nuances).
 
 ### 6. Status
 
-The Reviewer produces `planreview.md` in the work item folder, populated according to the artifact structure defined in this procedure. The file includes: **Status** (Complete, Significant Findings, or Deferred), a **Structure Summary** of which plan sections are present and substantive, **Findings** organized by dimension (Completeness, Coherence, Precision, Scope, Compliance) with each tagged as Blocking or Non-blocking, an **Uncertain Findings** subsection listing all uncertain findings with their disposition, and **Free-form Feedback** for observations that don't fit structured categories.
+The Reviewer produces `planreview.md` in the work item folder, populated according to the artifact structure defined in this procedure. The file includes: **Status** (Complete, Significant Findings, or Deferred), the **Review Mode** (`external` or `self-applied`), a **Structure Summary** of which plan sections are present and substantive, **Findings** organized by dimension (Completeness, Coherence, Precision, Scope, Compliance) with each tagged as Blocking or Non-blocking — under self-application the Precision findings include the recorded spot-check sample — an **Uncertain Findings** subsection listing all uncertain findings with their disposition, and **Free-form Feedback** for observations that don't fit structured categories.
 
 ## Findings Tiers
 

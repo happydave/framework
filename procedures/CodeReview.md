@@ -90,6 +90,8 @@ Organize the findings summary into three tiers:
 - **Resolved** — issues found and fixed, including both direct fixes and decided-and-proceeded cases; include the rationale for any judgment calls
 - **Observations** — non-blocking notes the Reviewer may want to be aware of but that do not require action before Test
 
+Write the findings summary to `codereview.md` in the work item folder (see Document Storage).
+
 ### 5. Reviewer: Act on Escalations
 
 Review any escalated findings:
@@ -98,6 +100,12 @@ Review any escalated findings:
 - The Agent then applies the resolution and updates the findings summary
 
 If there are no escalations, no Reviewer action is required — proceed to Test.
+
+If escalations exist and no Reviewer is available, the work item **holds at the escalation**: record the escalation and a `held` disposition in `codereview.md`, notify the owner, and do not proceed to Test until the owner acts. Do not self-resolve an escalation. Escalations are defined as high-risk-only precisely so they are rare; a reviewer resolving its own escalations collapses the tier into "decide and proceed" and the distinction stops meaning anything.
+
+## Document Storage
+
+The findings summary from step 4 is written to `codereview.md` in the work item folder. It contains: the **change summary** from step 2, the three findings tiers (**Escalations**, **Resolved**, **Observations**), and a final **Disposition** — proceed to Test, or held at an escalation with the owner notified. The file's presence is what makes a completed review visible; other procedures rely on the name (`Spike.md` cites `codereview.md` as one of the pipeline artifacts its single spike document replaces).
 
 ## Guidance
 
