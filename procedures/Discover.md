@@ -47,7 +47,7 @@ For high-complexity tasks, submit the `discover.md` for review and move Status t
 
 ### 2. Investigate
 
-Once scoped (and approved if necessary), update Status to `investigating`. Research the subject thoroughly within the established scope. This may include:
+Once scoped (and approved if necessary), update Status to `investigating`. Research the subject thoroughly within the established scope. **Consult the codex before researching anew** — the lore vault's codex tenant may already hold vetted claims on the subject; cite consulted claims as "codex, ed. N" in Methodology & Sources (the fuller step, including retrieval commands and how to treat stale hits, is in `WebResearch.md` §1). Sources may then include:
 
 - Official documentation, API references, and specifications
 - Available endpoints, methods, data formats, and authentication mechanisms

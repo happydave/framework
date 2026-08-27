@@ -49,6 +49,17 @@ Do NOT use WebResearch for:
 
 ### 1. Frame
 
+**Consult the codex first.** Before commissioning new research, search the codex tenant of the
+lore vault (`~/Documents/projects/lore/universes/codex/` — `lore search`/`resolve` from that
+repo, e.g. `go run ./cmd/lore search --vault universes --universe codex <term>`; registering
+`lore mcp` to make this one call is an **owner step**, not one a session performs) for existing
+claims on the subject. A hit enters the brief's context capsule as a **prior finding, with its
+confidence, scope, and edition** ("codex, ed. N") — it eliminates or sharpens questions; it does
+not replace re-verification of volatile claims at adoption. A hit that is verify-overdue or
+scope-displaced is a question generator: fold its re-verification into this round. No coverage?
+Say "codex: no prior coverage on <subject>" in the brief — negative consults are recorded so the
+archivist sees demand.
+
 Identify the **decisions** the research informs, then write the questions. Every question carries a
 **working hypothesis** to confirm or refute (and, where useful, what would change your mind).
 Hypotheses are what license the researcher to editorialize usefully — to argue rather than survey —
@@ -129,6 +140,11 @@ Persist the brief, then execute by transport:
   requesting document uses `skills/evidence.md` vocabulary, translate: `CONFIRMED` → Confirmed;
   `SECONDARY`/`VENDOR-CLAIM`/`SINGLE-SOURCE` → Supported or Hypothesis per corroboration;
   `INFERENCE` → Hypothesis; conflicting sources → Inconclusive.
+- **Cite the codex where it was consulted**: the digesting document records "codex, ed. N" (plus
+  the claim's scope/pin where load-bearing) for any codex claims it leaned on — citations are what
+  make the archivist's supersession impact sweep able to find consumers. Where a codex topic owns
+  the reply's domain, the archived reply is harvest material for the archivist intake path
+  (`docs/projects/loradel/archivist.md` §1).
 - **Grade the brief**, not just the research: did the one-reply discipline hold, were labels/URLs
   used, were hypotheses engaged? Researcher-invented improvements get adopted into the next round's
   brief; slips become tightened instructions. Record lessons in `process-notes.md` for series work.
