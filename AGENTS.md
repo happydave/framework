@@ -75,10 +75,14 @@ This repository contains meta-instructions - the governing standard for how feat
 - Project: `Create Project → Discover → Design → Design Review → Create Work Item(s)`
 - Intake: `Capture (docs/intake/) → Triage → Work Item(s) or declined` (see `Intake.md`)
 - Work Item: `Plan → Plan Review → Code → Code Review → Test → Document → Reflect → Git Commit → Complete`
+- Bug Fix: `BugReport → Investigate (if diagnosis needed) → Plan → (standard Work Item pipeline)` (see `BugReport.md`)
 - Rapid Iteration (exploratory/hardening): `Test → Triage → fix in groups → Reflect → Document` (loop; see `RapidIteration.md`)
 - Spike (settle one question before planning): `Work Item → Design → Execute → Verdict → Reflect` (single `spike.md`; see `Spike.md`)
 
 ## General Directives
 - NEVER narrate yourself, it can lead to excessive looping.
 - ALWAYS use the `todo` tool (when available) rather than chat.
+- **Pause on risk, not on ambiguity.** Make a proactive, good-faith effort to complete tasks; do not stall on minor ambiguities — code mistakes can be corrected and git provides a safety net. Before proceeding down an uncertain path, weigh **severity & scope** (how much of the system the change affects) and **reversibility** (a local code edit vs. a destructive migration or external side effect). If the cost of being wrong outweighs the benefit of speed, stop and ask.
+- **Code comments relate directly to the code.** Never hold or continue a conversation in comments (e.g. "this is what changed") — that context belongs in the implementation log or commit message.
+- **Query workflow data via its procedure.** When asked about workflow-managed data (e.g. "show me pending work items"), read the defining procedure (`WorkItem.md`) first to learn the canonical structure and query approach, then query. This applies to workflow artifacts specifically; general one-off questions and quick lookups remain outside the workflow.
 - **Read docs in full.** When you open a `workflow` doc or a project doc under `/home/dave/Documents/tickets`, read the entire file rather than a partial range. This applies to documentation only — **not** source code, which may contain very large files that are read selectively. "Read in full" is per-file: each doc you open is read whole; it does not mean every file in a tree must be opened. Files merely referenced by another doc are read only when directly relevant to the task.
