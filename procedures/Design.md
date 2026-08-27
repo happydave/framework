@@ -38,6 +38,26 @@ Every `design.md` must include:
 3. **Iterate** — update the design based on review feedback.
 4. **Approve** — once approved, the design serves as the foundation for decomposing the project into Work Items.
 
+## Decision Records
+
+Designs and project docs stamp decisions ("matrix rows are two-column", "951 superseded") that
+later change for good reasons. Handle that change ADR-style — the record is append-only:
+
+- A decision entry is **dated** and states the decision plus a one-line why.
+- **Never rewrite a stamped decision in place.** Superseding one means appending a new dated
+  entry that names what it replaces and why — the old entry survives as the explanation for why
+  artifacts built under it look the way they do. Git history alone is not the record; the doc
+  itself must show the succession.
+- This applies equally when the original decision was simply wrong: corrections are new entries
+  too.
+- The discipline binds decisions once **stamped** — a design under active drafting (pre-approval)
+  is still a living document and may be edited freely, per the Guidance below. The binding point
+  is design approval, or the moment a decision is recorded as settled in a project doc.
+- Relation to **Alternatives Considered**: that section is point-in-time rationale for the
+  drafted shape; decision records are dated commitments whose later changes must stay traceable.
+  (World-facts rather than intent follow the codex claim-lifecycle supersession convention in the
+  lore vault instead.)
+
 ## Guidance
 
 - Focus on the "High-Level Invariants" that must be true across all work items.

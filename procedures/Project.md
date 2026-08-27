@@ -32,6 +32,9 @@ Every project record must include:
 ## Optional Content
 
 - **Backlog** — a list of Work Item IDs associated with this project and their current status.
+- **Decisions** — dated, append-only decision entries. Settled decisions recorded in a project
+  doc follow the Decision Records convention in `Design.md`: supersede by appending a new dated
+  entry that names what it replaces and why — never by rewriting the stamped original.
 
 ## Procedure
 
