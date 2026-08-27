@@ -63,7 +63,7 @@ Read and follow `procedures/Merge.md` exactly, in order.
 ### Step 4: Rebase and Resolve
 
 1. Begin the rebase. Inform the user: `git rebase --abort` returns to the post-squash state if anything goes wrong.
-2. For each conflict (during a rebase `--ours` is the **target** branch and `--theirs` is the feature-branch commit being replayed — the reverse of a merge):
+2. For each conflict — a rebase replays onto the target, so HEAD is the target: `--ours` is the **target** branch, `--theirs` is the feature-branch commit being replayed. This inverts the meaning the flags have in `git merge <target>` run from the feature branch. Decide by intent, then pick the flag:
    - **Generated** → `git checkout --ours <file>` to take the target version, mark resolved, note in artifact.
    - **Lock** → `git checkout --ours <file>` to take the target version, mark resolved, note in artifact.
    - **Standard** — if a Resolution Plan entry exists for this file, follow it. Otherwise: read both sides, state your understanding of each side's intent, propose a resolution. For non-trivial cases, show the proposed resolution and get user confirmation before marking resolved. If genuinely uncertain, STOP and ask.

@@ -70,7 +70,7 @@ The value of this pass is that resolution decisions are made while reading clean
 > **Recovery:** If you need to stop mid-rebase for any reason, `git rebase --abort` returns the branch to its post-squash state. The SHAs captured in Phase 1 are your recovery anchors.
 
 1. Begin the rebase onto the target branch.
-> **Side naming during a rebase is reversed relative to a merge.** Commits are replayed *onto* the target branch, so HEAD is the target: `--ours` is the **target branch** and `--theirs` is the **feature-branch commit being applied**. Do not carry merge-time intuition into these commands.
+> **`--ours` is the target branch, not your feature branch.** A rebase replays commits *onto* the target, so HEAD is the target at every conflict: `--ours` is the **target**, `--theirs` is the **feature-branch commit being applied**. This inverts the meaning the flags have in `git merge <target>` run from the feature branch — the intuition most people carry in. Decide by intent first ("take the target version"), then pick the flag.
 
 2. For each conflicted file, apply the Phase 1 classification:
    - **Generated** — take the target branch version unconditionally (`git checkout --ours <file>`). Mark resolved. Do not manually edit. Regeneration happens in Phase 5.
