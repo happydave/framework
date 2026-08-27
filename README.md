@@ -23,9 +23,10 @@ The agent reads `AGENTS.md` at the start of each session and consults the refere
 | Directory | Contents |
 |-----------|----------|
 | `procedures/` | Step-by-step process documents (Plan, Code, Review, etc.) |
+| `agents/` | Agent personas to attach when dispatching a specialized session |
 | `skills/` | Language and tooling conventions (Go, TypeScript, SQL, etc.) |
 | `knowledge/` | Reference material (architecture diagrams, integration guides) |
-| `internal/` | Design docs for the workflow system itself |
+| `internal/` | Design docs and tooling for the workflow system itself |
 
 ## Typical Pipelines
 

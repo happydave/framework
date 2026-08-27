@@ -12,7 +12,7 @@ This workspace follows the structured planning and implementation framework defi
 2. **Follow Artifact Patterns**: Artifacts (plans, work items, implementation logs) MUST follow the naming conventions and structures defined in their respective procedures.
 3. **Centralized Management**: All management artifacts live in the `tickets` repository under `docs/pending/`, `docs/projects/`, or `docs/archive/`.
 4. **No Code in Plans**: Ensure `plan.md` files describe behavior and invariants without containing code snippets (structs, functions).
-5. **Language Guidelines**: Strictly adhere to language-specific rules in `workflow/guidelines/` (Go, TypeScript, Docker, Markdown, etc.).
+5. **Language and Tooling Guidelines**: Strictly adhere to the rules in `workflow/skills/` (Go, TypeScript, Docker, Markdown, tooling, etc.).
 
 ## Procedures Reference
 - **Initiating Work**: Use `WorkItem.md` to capture new tasks in `docs/pending/`.

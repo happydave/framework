@@ -29,7 +29,7 @@ When no external reviewer is available, the plan's author performs the review in
 
 - "Stops and notifies the requester" means surfacing to the human owner — the requester is the owner in both modes.
 - The Revision Cycle Protocol applies unchanged: each self-revision is a real edit to `plan.md` addressing all Blocking findings, and three failed cycles still escalate to the owner as Significant Findings.
-- Step 5's Author-availability clause (confirm or dismiss uncertain findings from domain knowledge) is external-review only. Its purpose is to let the Author supply context the Reviewer lacked; a self-reviewer already holds all of the author's context, so uncertainty that survives it is genuine and cannot be cleared by asserting the author's availability.
+- Step 6's Author-availability clause (confirm or dismiss uncertain findings from domain knowledge) is external-review only. Its purpose is to let the Author supply context the Reviewer lacked; a self-reviewer already holds all of the author's context, so uncertainty that survives it is genuine and cannot be cleared by asserting the author's availability.
 
 Self-review's characteristic failure mode is rubber-stamping — a reviewer inclined to confirm the plan it just wrote. Three countermeasures are mandatory:
 
@@ -78,7 +78,19 @@ Precision is accuracy as well as clarity. Where the plan makes a concrete claim 
 
 **Compliance** — does the plan conflict with any applicable `skills/[language].md` rules? Plans may override applicable guideline rules when explicitly documented in the plan itself. The Reviewer checks for two things: (a) whether a conflict exists, and (b) whether the plan explicitly acknowledges and justifies the override. Unjustified conflicts remain Blocking; explicit overrides with justification are Non-blocking structural observations unless they violate an Invariant.
 
-### 4. Reporting
+### 4. Resolve Findings
+
+Before reporting, the Reviewer SHALL attempt to resolve every finding identified in Step 3:
+
+- **Fix it directly** — for Blocking and Non-blocking findings where the correct resolution is unambiguous (e.g., a typo, a trivially-wrong reference, a missing section whose content can be inferred from context), apply the fix to the plan document immediately.
+- **Stop on unresolvable findings** — if a finding cannot be resolved without information or decisions the Reviewer does not have (e.g., conflicting requirements, ambiguous intent that only the Author can clarify, scope questions that require stakeholder input), stop immediately and state:
+  1. Which finding cannot be resolved.
+  2. Why it cannot be resolved (what information or decision is missing).
+  3. Who or what is needed to unblock it.
+
+Do not proceed to Step 5 (Reporting) until all resolvable findings have been resolved or it is confirmed that unresolvable findings prevent proceeding.
+
+### 5. Reporting
 
 The Reviewer organizes findings into two tiers:
 - **Blocking** — must be resolved before proceeding: missing sections, contradictions, scope inflation, or ambiguity in critical sections.
@@ -86,7 +98,7 @@ The Reviewer organizes findings into two tiers:
 
 Flag findings as **uncertain** when they depend on intent or context the Reviewer cannot fully determine. An uncertain finding defaults to **Blocking** unless a human adjudicates it. Under a self-applied review, the author's presence in the session does not constitute adjudication: a Blocking uncertain finding is resolved the way any Blocking finding is — revise the plan so the uncertainty no longer exists, or hold it for the owner. It SHALL NOT be resolved in the plan's favor by default. The `planreview.md` output SHALL list all uncertain findings separately with their disposition so they are visible.
 
-### 5. Judgment and Refinement
+### 6. Judgment and Refinement
 
 **Revision Cycle Protocol:**
 - The Author may revise and resubmit up to **three times**.
@@ -97,7 +109,7 @@ If the review is external and the Author is available to address uncertain findi
 - Confirm or dismiss uncertain findings based on domain knowledge and project context.
 - Identify anything the Reviewer missed (e.g., organizational nuances).
 
-### 6. Status
+### 7. Status
 
 The Reviewer produces `planreview.md` in the work item folder, populated according to the artifact structure defined in this procedure. The file includes: **Status** (Complete, Significant Findings, or Deferred), the **Review Mode** (`external` or `self-applied`), a **Structure Summary** of which plan sections are present and substantive, **Findings** organized by dimension (Completeness, Coherence, Precision, Scope, Compliance) with each tagged as Blocking or Non-blocking — under self-application the Precision findings include the recorded spot-check sample — an **Uncertain Findings** subsection listing all uncertain findings with their disposition, and **Free-form Feedback** for observations that don't fit structured categories.
 

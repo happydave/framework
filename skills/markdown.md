@@ -1,6 +1,6 @@
 ---
 name: markdown
-description: Markdown quality rules: link checking, structure verification, spell checking
+description: Markdown quality rules: link checking, structure verification, merge union check, spell checking
 ---
 # Markdown Guidelines
 
@@ -47,6 +47,13 @@ Should include a heading hierarchy that starts with `#` for the title and uses `
 
 When structural verification is automated, missing required sections should produce a clear pass/fail result identifying which sections are absent.
 
+## Build Procedures — Merge Union Check
+When consolidating overlapping lists or sections from two or more documents into one, verify the merged result covers the union of its sources. Rewriting a merged section from memory of both sources reliably drops items, so verify against the sources themselves.
+
+**Procedure:** before declaring the merge step done, enumerate the source items from the *pre-change* versions of each document (e.g. `git show HEAD:<file>`), then tick each one off against the merged result. Every source item must appear in the merged result or be recorded as a deliberate omission with a reason.
+
+This is a hard gate for any change that merges document content: the merge is complete when every source item is accounted for.
+
 ## Test Procedures — Spell Checking
 Spell checking is recommended as an advisory quality signal to help catch typos in technical terminology where dictionary coverage may be limited.
 
@@ -62,6 +69,9 @@ Identifying duplicated or near-duplicated text blocks across Markdown artifacts 
 **Heuristic:**
 Any block of 8 or more consecutive words that appears more than once within the same document should be flagged for review. This simple word-count approach is sufficient to surface most problematic duplications without requiring complex n-gram analysis.
 
+**Tooling:**
+Run [`internal/dupcheck.py`](../internal/dupcheck.py) rather than reimplementing the heuristic — implementers and reviewers should get the same result from the same tool. It takes any list of Markdown files (`internal/dupcheck.py FILE...`), reports maximal repeated blocks with their line numbers, and exits 0 whether or not it finds any, since this check is advisory. Frontmatter and fenced code blocks are excluded by default; `--self-test` verifies the tool itself.
+
 Focus on plan and ticket documents where repetition often indicates content that was copied from one section without updating, or from a previous iteration of the same document.
 
 ## Test Procedures — Grammar & Readability
@@ -73,7 +83,7 @@ Lightweight grammar and readability checks are optional advisory quality signals
 - Readability metrics (e.g., sentence length averages) may be checked optionally to flag documents that have become unwieldy, but no specific grade-level target is mandated.
 
 ## When to Apply Checks
-**Build procedures** (link checking, structure verification) SHOULD run after every implementation step that modifies Markdown files and MUST pass before closing a ticket. These are fast, deterministic checks with clear outcomes.
+**Build procedures** (link checking, structure verification, merge union check) SHOULD run after every implementation step that modifies Markdown files and MUST pass before closing a ticket. The merge union check applies only to steps that consolidate content from more than one document; the other two apply to every step. These are fast, deterministic checks with clear outcomes.
 
 **Test procedures** (spell check, duplicate detection, grammar checks) SHOULD run periodically or at ticket close time — not necessarily after each small incremental change, as they can produce noise during active writing and may flag issues that resolve themselves in subsequent edits.
 

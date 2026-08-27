@@ -80,7 +80,7 @@ Identify which `skills/` documents apply to this project and record them in the 
 
 Reference these guidelines in the plan's **Required Behaviors & Verifications** section wherever build or test context is relevant. This information drives the Code and Document actions: implementers look here first rather than inferring guidelines from project structure.
 
-Examples of applicable guidelines: `skills/go.md`, `skills/typescript.md`, `skills/docker.md`, `skills/markdown.md`.
+Examples of applicable guidelines: `skills/go.md`, `skills/typescript.md`, `skills/docker.md`, `skills/markdown.md`, `skills/tooling.md`.
 
 If no guidelines apply (e.g., a pure prose or workflow document), state that explicitly.
 
@@ -118,6 +118,7 @@ The presence of `plan.md` in a work item folder indicates the item has been plan
 The planning process MUST identify all applicable guidelines and document them in the feature plan's **Applicable Guidelines** section. This is mandatory, not optional. Guidelines from `skills/[name].md` define the build and test procedures that Code and Document actions will use — they cannot be applied correctly if they are not named in the plan.
 
 - Inspect the project root and purpose to determine which guidelines apply (e.g., `skills/go.md` for Go projects, `skills/typescript.md` (plus the applicable profile) for TypeScript projects, `skills/docker.md` for Docker-based builds, `skills/markdown.md` for documentation-heavy projects).
+- `skills/tooling.md` applies whenever the work depends on an external tool (a CLI, MCP server, or editor extension), independently of language. Tool-specific reference material lives in `knowledge/tools/`.
 - Record each applicable guideline and its defined build/test steps in the plan's Applicable Guidelines section.
 - If a project spans multiple guidelines (e.g., Go + Docker), list all of them.
 

@@ -82,6 +82,7 @@ When all features are implemented:
 - Create temporary directories inside the project repository, not outside it. Outside the repo, each file system action requires manual approval; inside the repo, there are no such restrictions.
 - When a planning document is ambiguous, make a reasonable choice, document it **in `code.md` at the time of making the decision**, and continue. Do not block on ambiguity. Software can be rewritten and git provides a rollback path — the cost of a recoverable wrong decision is almost always lower than the cost of stopping.
 - When a planning document contradicts another, note the inconsistency in `code.md` and resolve it in the direction that best serves the stated goals of the plan and/or project.
+- When a change merges overlapping content from multiple documents into one, apply the Merge Union Check in `skills/markdown.md`: enumerate the source items from the pre-change versions and tick each off against the merged result before considering the step done.
 - Guidelines applied in step 1 apply throughout implementation. If a plan change conflicts with a guideline, log the conflict and resolution in `code.md`.
 - Guideline-defined build and test procedures take precedence over any generic interpretation of those terms. When a guideline specifies how to build or test, follow it exactly.
 - If a guideline does not define build or test steps, use conventional defaults for that domain (e.g., the standard tool invocation for that language or format) and record the decision in `code.md`.

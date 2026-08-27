@@ -25,6 +25,7 @@ This repository contains meta-instructions - the governing standard for how feat
 - `BugReport.md` — capture a defect as a structured work item with reproduction context
 - `GitCommit.md` — stage and commit changes; no-op if the working directory is not a git repository
 - `GitMerge.md` — plan and execute branch merges: survey divergence, select strategy, execute, record outcome
+- `Merge.md` — execute one strategy in depth: audited squash-and-rebase of a diverged feature branch, with logical-conflict review
 - `SideQuest.md` — execute and document one-off tasks with minimal overhead
 - `Spike.md` — answer one feasibility/cost/design question with a throwaway build and a recorded verdict
 - `Dispatch.md` — package context and instructions for a specialized agent session
@@ -49,14 +50,25 @@ This repository contains meta-instructions - the governing standard for how feat
 - `rust.md` — Rust + Bevy conventions: cargo gates, headless-crate (sub-crate) rule, feature gating
 - `typescript.md` — TypeScript hub: universal conventions + profiles for VS Code extensions and SPA/game/web (Docker-based builds)
 - `docker.md` — container-first build environment (`Dockerfile.dev` + `Makefile` pattern)
-- `markdown.md` — quality gates for Markdown artifacts (link checking, structure verification, spell checking)
+- `markdown.md` — quality gates for Markdown artifacts (link checking, structure verification, merge union check, spell checking)
 - `sql.md` — SQL conventions for queries, schema, and migrations
-- `versioning.md` — version increment policy: one ticket, one patch
+- `versioning.md` — version increment policy: one ticket, one patch (Go projects exempt — they version via git tags)
 - `claude-code.md` — Claude Code CLI usage reference for task delegation and automated operations
 - `debug.md` — AI agent debugging methodology (structured hypothesis generation, bias mitigation)
 - `evidence.md` — evidence assessment rules (Hub for Logs, Metrics, Groundcover)
 - `authoring-skills.md` — how we write skills: directive not narrative, application-tested; synthesizes superpowers `writing-skills` + tickets `creating-skills`
+- `tooling.md` — tool-selection policy and credential handling for external tools
 
+**agents** (agent personas — attach when dispatching a specialized session)
+- `Merge.md` — Merge Agent: drives `procedures/Merge.md` interactively
+- `researcher.md` — research agent persona
+
+**internal** (framework tooling — run these rather than reimplementing a check)
+- `dupcheck.py` — duplicate-detection heuristic from `skills/markdown.md`; `internal/dupcheck.py FILE...`
+- `DESIGN.md` — design notes for the workflow system itself
+
+**knowledge** (reference material — look these up as needed; non-normative)
+- `vscode-agent-registration.md` — registering agents for VS Code
 
 ## Typical Pipelines
 
