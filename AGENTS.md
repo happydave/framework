@@ -31,6 +31,8 @@ This repository contains meta-instructions - the governing standard for how feat
 - `Dispatch.md` — package context and instructions for a specialized agent session
 - `Discover.md` — investigate products, APIs, or technology domains
 - `WebResearch.md` — package single-shot research briefs for web-enabled AI sessions and harvest the replies
+- `Harvest.md` — distil archived research into published codex claims: distillation plan + two review gates + gate checklist + edition (replaces Plan/Code/Test for content work items)
+- `Reverify.md` — re-verify published codex claims when a horizon expires: scan → brief → date test → errata-or-supersession fork → impact sweep → edition
 - `Investigate.md` — diagnose runtime system behavior using observability data
 - `Triage.md` — turn the intake queue or a test/feedback dump into prioritized work items with root-cause hypotheses and flagged decisions
 - `RapidIteration.md` — the test→triage→fix-in-groups→reflect loop for exploratory and hardening work
@@ -78,6 +80,8 @@ This repository contains meta-instructions - the governing standard for how feat
 - Bug Fix: `BugReport → Investigate (if diagnosis needed) → Plan → (standard Work Item pipeline)` (see `BugReport.md`)
 - Rapid Iteration (exploratory/hardening): `Test → Triage → fix in groups → Reflect → Document` (loop; see `RapidIteration.md`)
 - Spike (settle one question before planning): `Work Item → Design → Execute → Verdict → Reflect` (single `spike.md`; see `Spike.md`)
+- Codex Harvest (research archives → published claims): `Ledger/Survey (SideQuest) → Harvest (distillation plan → distillation review → author → fidelity review → gates → edition) → Reflect → Git Commit → Complete` (see `Harvest.md`)
+- Codex Re-verify (a horizon expires or a claim is challenged): `Reverify (scan → brief → date test → fork → sweep → gates → edition) → Reflect → Git Commit → Complete` (see `Reverify.md`)
 
 ## General Directives
 - NEVER narrate yourself, it can lead to excessive looping.

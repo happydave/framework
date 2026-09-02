@@ -44,6 +44,11 @@ Do NOT use WebResearch for:
 - **Reply**: archived **verbatim** at `docs/projects/<project>/research/web-research-<topic>.md`,
   with a provenance header prepended after pasting.
 - Multi-round series keep running lessons in `briefs/process-notes.md`.
+- **An archive produced without a brief** — an external session's reply pasted directly, or a
+  research record written before this procedure existed — still gets the provenance blockquote
+  (§6) naming its transport and date; where neither is recorded, say so in the blockquote (the
+  codex anchors such an archive as `webresearch-unrecorded-transport`). A dated, attributed
+  archive is what lets a later harvest stamp `verified` honestly.
 
 ## Procedure
 
@@ -58,7 +63,8 @@ confidence, scope, and edition** ("codex, ed. N") — it eliminates or sharpens 
 not replace re-verification of volatile claims at adoption. A hit that is verify-overdue or
 scope-displaced is a question generator: fold its re-verification into this round. No coverage?
 Say "codex: no prior coverage on <subject>" in the brief — negative consults are recorded so the
-archivist sees demand.
+archivist sees demand. A brief whose purpose is to re-verify *published* claims follows
+`Reverify.md`'s brief shape (per-hypothesis dated verdicts) on top of this procedure.
 
 Identify the **decisions** the research informs, then write the questions. Every question carries a
 **working hypothesis** to confirm or refute (and, where useful, what would change your mind).
@@ -134,7 +140,9 @@ Persist the brief, then execute by transport:
 ### 6. Harvest
 
 - Prepend a **provenance blockquote** to the archived reply: work item, round, link to the brief,
-  execution date, "archived verbatim below."
+  execution date — and the reply's own self-stated "as of" date when it differs (a researcher
+  running past midnight UTC will date its findings tomorrow; the codex stamps claims with the
+  "as of" date and the blockquote is where the two are reconciled) — "archived verbatim below."
 - **Digest into the requesting document** (e.g. `discover.md` Findings): the archived reply is a
   *source*; the digest carries the load-bearing findings with labels and links back. When the
   requesting document uses `skills/evidence.md` vocabulary, translate: `CONFIRMED` → Confirmed;
@@ -143,8 +151,8 @@ Persist the brief, then execute by transport:
 - **Cite the codex where it was consulted**: the digesting document records "codex, ed. N" (plus
   the claim's scope/pin where load-bearing) for any codex claims it leaned on — citations are what
   make the archivist's supersession impact sweep able to find consumers. Where a codex topic owns
-  the reply's domain, the archived reply is harvest material for the archivist intake path
-  (`docs/projects/loradel/archivist.md` §1).
+  the reply's domain, the archived reply is harvest material: a `Harvest.md` work item takes it
+  onward through the archivist intake path (`docs/projects/loradel/archivist.md` §1).
 - **Grade the brief**, not just the research: did the one-reply discipline hold, were labels/URLs
   used, were hypotheses engaged? Researcher-invented improvements get adopted into the next round's
   brief; slips become tightened instructions. Record lessons in `process-notes.md` for series work.

@@ -36,7 +36,7 @@ A folder may contain both `discover.md` and `workitem.md` when discovery was pro
 
 ### 1. Initiate and Scope
 
-Create `discover.md` immediately. Clarify what is being investigated and why. Fill in the **Status**, **Subject**, **Motivation**, and **Scope** sections.
+Create `discover.md` immediately. Clarify what is being investigated and why. Fill in the **Status**, **Date**, **Subject**, **Motivation**, and **Scope** sections.
 
 - **Status** — start with `scoping`.
 - **Subject** — the product, API, technology, methodology, or domain under investigation.
@@ -47,7 +47,7 @@ For high-complexity tasks, submit the `discover.md` for review and move Status t
 
 ### 2. Investigate
 
-Once scoped (and approved if necessary), update Status to `investigating`. Research the subject thoroughly within the established scope. **Consult the codex before researching anew** — the lore vault's codex tenant may already hold vetted claims on the subject; cite consulted claims as "codex, ed. N" in Methodology & Sources (the fuller step, including retrieval commands and how to treat stale hits, is in `WebResearch.md` §1). Sources may then include:
+Once scoped (and approved if necessary), update Status to `investigating`. Research the subject thoroughly within the established scope. **Consult the codex before researching anew** — the lore vault's codex tenant may already hold vetted claims on the subject; cite consulted claims as "codex, ed. N" in Methodology & Sources (the fuller step, including retrieval commands and how to treat stale hits, is in `WebResearch.md` §1). When a codex topic owns the domain, a completed discovery's findings are harvest material — a `Harvest.md` work item takes them into the library. Sources may then include:
 
 - Official documentation, API references, and specifications
 - Available endpoints, methods, data formats, and authentication mechanisms
@@ -82,6 +82,10 @@ Update Status to `completed`. Ensure the document is structured around findings 
 Every discovery document must include:
 
 - **Status** — `scoping`, `pending-approval`, `investigating`, or `completed`.
+- **Date** — when the investigation was executed (a day, or a span for multi-session work), on
+  its own line in the header. This is the document's own date, distinct from the subject's
+  version or date context below; a later harvest uses it as the upper bound for `verified` on
+  any claim distilled from the document, and without it the only fallback is a commit date.
 - **Subject** — what was investigated, including version or date context.
 - **Motivation** — why this investigation was conducted.
 - **Scope** — the boundaries of the research, quality gates for sources, and out-of-scope definitions.

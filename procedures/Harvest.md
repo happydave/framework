@@ -131,8 +131,10 @@ nothing is blessed or tagged), Resolved, Observations; then the disposition.
 Run every item; record the results in the **Gates** section of `harvest.md`:
 
 1. `lore check` on the codex tenant: 0 violations, and no new warnings the manifest did not
-   predict; then on every other tenant: unchanged.
-2. Every anchor's digests verify (vault digest tooling in check mode).
+   predict; then on every other tenant: unchanged. The `missing-verified` violation and the
+   `unknown-generator` warning are what make the manifest's dates and generators
+   machine-checked here.
+2. `lore digest check` over the topic's anchors: every one `ok`.
 3. `resolve --canon canon <topic>` lists exactly the manifest's blessed claims; errata absent.
 4. `go test ./...` in the lore repo passes.
 5. Dupcheck on the topic index and the tenant root (`skills/markdown.md`).

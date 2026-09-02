@@ -38,6 +38,16 @@ The agent reads `AGENTS.md` at the start of each session and consults the refere
 
 **Quick chore:** SideQuest (single execution + audit doc, no planning phase)
 
+**Bug fix:** BugReport → Investigate (if diagnosis needed) → Plan → the work item pipeline
+
+**Rapid iteration (exploratory/hardening):** Test → Triage → fix in groups → Reflect → Document, looped
+
+**Spike (settle one question before planning):** Work Item → Design → Execute → Verdict → Reflect, in one `spike.md`
+
+**Codex harvest (`Harvest.md`):** Ledger/Survey → Harvest (distillation plan → distillation review → author → fidelity review → gates → edition) → Reflect → Git Commit → Complete
+
+**Codex re-verify (`Reverify.md`):** a horizon expires or a claim is challenged → Reverify (scan → brief → date test → fork → sweep → gates → edition) → Reflect → Git Commit → Complete
+
 ## License
 
 UNLICENSE — see `UNLICENSE`.
