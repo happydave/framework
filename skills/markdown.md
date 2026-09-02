@@ -32,9 +32,9 @@ A plan may reference a ticket whose `plan.md` does not yet exist because the ref
 Structural requirements ensure every framework artifact contains the sections needed for it to function as intended by the workflow process. Structural failures are hard gates.
 
 **`workitem.md` required sections:**
-- An `Objective` or `Description` section (title of what the work item is).
-- A `Proposed Changes` section (what will be created, modified, or removed).
-- An `Acceptance Criteria` section (concrete conditions for closure).
+- A title heading and an `Objective` or `Description` section (what the work item is and why).
+
+`Proposed Changes` and `Acceptance Criteria` are advisory for `workitem.md`, not build gates — `procedures/WorkItem.md` defines them as optional content that is included only when known, and it is the authority on this artifact's structure. Their absence never fails structure verification.
 
 **`plan.md` required sections:**
 - `Objective` — states the goal concisely.
