@@ -4,6 +4,8 @@
 
 Stage and commit changes in the current working directory with a clear, accurate commit message.
 
+This procedure commits only. **It never pushes.** Publishing the commit is a separate action requiring an explicit instruction from the requester — see the "Commit freely; never push" directive in `AGENTS.md`.
+
 ## When to Use
 
 - A change is ready to be recorded in version control.
