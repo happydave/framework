@@ -36,6 +36,7 @@ Identify and read:
 - The project document (`project.md`) for the named project.
 - All design documents referenced by or co-located with the project document.
 - All work items associated with the project, in any state (pending, active, complete, archived, on hold).
+- All phase records under the project's `phases/` folder (`Phase.md`), together with the work items that declare each phase, including declarers from other projects.
 
 If the project document does not exist, stop immediately. Status = **Deferred**. Note which artifact could not be located.
 
@@ -59,7 +60,7 @@ Assess the project across five dimensions:
 
 **Scope Integrity** — is scope creeping (new work items added that were not implied by the original project scope or design)? Are there work items that should be closed, deferred, or split? Is the project's design still representative of what is being built?
 
-**Work Item Health** — are work items in a consistent and progressing state? Identify: stalled items (in active state with no recent progress), blocked items without documented resolution plans, and orphaned work items (referenced in design documents or other work items but not present in the backlog). Note items that have been on hold for an extended period without revisit.
+**Work Item Health** — are work items in a consistent and progressing state? Identify: stalled items (in active state with no recent progress), blocked items without documented resolution plans, and orphaned work items (referenced in design documents or other work items but not present in the backlog). Note items that have been on hold for an extended period without revisit. Where the project owns phases, also identify: a phase declared `complete` while a declaring work item is still open (the close gate was bypassed by hand), and a phase declared `active` with no declaring work items or no movement among them.
 
 **Dependency Status** — are there unresolved cross-work-item dependencies that block forward progress? Are assumed external dependencies (libraries, services, APIs, team outputs) still valid? Are any work items blocked on each other in a cycle?
 

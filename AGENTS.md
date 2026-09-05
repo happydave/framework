@@ -23,6 +23,7 @@ This repository contains meta-instructions - the governing standard for how feat
 - `Intake.md` — zero-friction capture of raw ideas, observations, and dumps into the intake inbox for later triage
 - `WorkItem.md` — create and manage work items
 - `BugReport.md` — capture a defect as a structured work item with reproduction context
+- `Phase.md` — a named group of work items, owned by one project, that must close together: record under `docs/projects/<owner>/phases/`, membership declared on the work item (`phase:`), close gated on no open member
 - `GitCommit.md` — stage and commit changes; no-op if the working directory is not a git repository
 - `GitMerge.md` — plan and execute branch merges: survey divergence, select strategy, execute, record outcome
 - `Merge.md` — execute one strategy in depth: audited squash-and-rebase of a diverged feature branch, with logical-conflict review
@@ -74,7 +75,8 @@ This repository contains meta-instructions - the governing standard for how feat
 
 ## Typical Pipelines
 
-- Project: `Create Project → Discover → Design → Design Review → Create Work Item(s)`
+- Project: `Create Project → Discover → Design → Design Review → Create Work Item(s)` (grouped into Phases when the design has checkpoints; see `Phase.md`)
+- Phase (a group of work items that must close together): `Create (Phase.md) → members run the Work Item pipeline → Close (gated on no open member)`
 - Intake: `Capture (docs/intake/) → Triage → Work Item(s) or declined` (see `Intake.md`)
 - Work Item: `Plan → Plan Review → Code → Code Review → Test → Document → Reflect → Git Commit → Complete`
 - Bug Fix: `BugReport → Investigate (if diagnosis needed) → Plan → (standard Work Item pipeline)` (see `BugReport.md`)

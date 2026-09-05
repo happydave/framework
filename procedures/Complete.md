@@ -40,3 +40,8 @@ into the project's history log **in the same edit**, leaving the anchor a one-li
 history link. Anchors carry open work; history carries done work — offloading at the closure
 boundary keeps the anchor from silently re-accumulating (the failure mode is rows accreting
 until a project assessment forces a cleanup).
+
+If the work item declares a `phase` and this completion leaves that phase with no open member,
+say so in the completion report and point at the Close step of `Phase.md`. **Do not close the
+phase from here**: a phase may carry exit criteria beyond membership, and closing it is its own
+gated step.

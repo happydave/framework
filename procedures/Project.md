@@ -18,6 +18,7 @@ Projects are "never finished" in the traditional sense; they exist as long as th
 Projects are documented in a central location (e.g., a `tickets` repository), not within individual code repositories. Each project has a folder at `docs/projects/<slug>/` which holds the project record and prose artifacts:
 
 - `design.md`: The architectural design for the project (see `Design.md`).
+- `phases/`: One flat file per phase this project owns (see `Phase.md`).
 - `archive/`: A folder where completed work items associated with this project are moved.
 
 ## Required Content
@@ -32,6 +33,7 @@ Every project record must include:
 ## Optional Content
 
 - **Backlog** — a list of Work Item IDs associated with this project and their current status.
+- **Phases** — the phases this project owns, each a record under `phases/` (see `Phase.md`), with their declared status. Membership is derived from the work items' own `phase` fields, never listed here as authority.
 - **Decisions** — dated, append-only decision entries. Settled decisions recorded in a project
   doc follow the Decision Records convention in `Design.md`: supersede by appending a new dated
   entry that names what it replaces and why — never by rewriting the stamped original.
@@ -42,7 +44,7 @@ Every project record must include:
 2. **Discovery (Optional)** — if the project requires research before design, follow `Discover.md`.
 3. **Design** — produce a high-level design following `Design.md`.
 4. **Design Review** — subject the design to a formal review following `DesignReview.md`.
-5. **Decomposition** — break the design down into individual Work Items following the WorkItem procedure, linking each back to the project.
+5. **Decomposition** — break the design down into individual Work Items following the WorkItem procedure, linking each back to the project. When the design has checkpoints or milestones whose work items must close together, create one phase per checkpoint following `Phase.md` and have each decomposed work item declare its phase.
 6. **Execution** — manage the execution of work items.
 
 ## Status Tracking
