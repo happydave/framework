@@ -107,11 +107,19 @@ is meant to measure, and any address the server hands back (`<pod>.<headless>.<n
 only in-cluster. Run acceptance clients as pods: a small client image, the scripts in a ConfigMap,
 one pod per role.
 
-Write them to measure the server, not the client library. Libraries queue a request issued while
-disconnected and retry it later, so count one only when the library reports the server's
-acknowledgement — a blocking confirm or an ack callback, not the return of the send call. Wait for a
-count rather than a fixed sleep, and print disconnect reason codes so a redirect is observed rather
-than assumed.
+Write them to measure the server, not the client library. Two distinct traps:
+
+- Libraries queue a request issued while disconnected and retry it later, so count one only when the
+  library reports the server's acknowledgement — not the return of the send call.
+- **Read what the acknowledgement said, not just that one arrived.** A blocking confirm typically
+  reports the library's own local result, so a negative acknowledgement from the server satisfies it
+  and scores as success. Take the server's status code from the per-message callback and count only
+  the codes that mean accepted. A client blind to refusals turns "the server refused two thirds of
+  these" into "all delivered", and the run then looks like a rare loss instead of a systematic
+  refusal.
+
+Wait for a count rather than a fixed sleep, and print disconnect reason codes so a redirect is
+observed rather than assumed.
 
 ## Our setup
 
