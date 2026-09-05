@@ -53,6 +53,7 @@ This repository contains meta-instructions - the governing standard for how feat
 - `rust.md` — Rust + Bevy conventions: cargo gates, headless-crate (sub-crate) rule, feature gating
 - `typescript.md` — TypeScript hub: universal conventions + profiles for VS Code extensions and SPA/game/web (Docker-based builds)
 - `docker.md` — container-first build environment (`Dockerfile.dev` + `Makefile` pattern)
+- `kubernetes.md` — Helm chart verification ladder, per-pod identity in a StatefulSet, throwaway kind clusters on podman
 - `markdown.md` — quality gates for Markdown artifacts (link checking, structure verification, merge union check, spell checking)
 - `sql.md` — SQL conventions for queries, schema, and migrations
 - `versioning.md` — version increment policy: one ticket, one patch (Go projects exempt — they version via git tags)
