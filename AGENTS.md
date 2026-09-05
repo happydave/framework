@@ -93,7 +93,9 @@ This repository contains meta-instructions - the governing standard for how feat
 - **Commit freely; never push.** Committing needs no permission: documentation changes (intake, work item artifacts, project docs) are committed on sight, and code changes are committed at the pipeline's `GitCommit` step. Stage **by specific path** — never `git add -A` or `git add .`, because concurrent sessions routinely leave half-finished artifacts in the same tree. But **`git push`, force-push, and merges into `main`/`master` require an explicit instruction in the requester's current message.** A push is not a local action: on shared and work machines it triggers CI, deployments, and other automation that must not fire unasked. Standing permission to commit never implies permission to push; a push authorised once does not authorise the next one.
 - **Code comments relate directly to the code.** Never hold or continue a conversation in comments (e.g. "this is what changed") — that context belongs in the implementation log or commit message.
 - **Ops is responsible for host state.** Installing software, changing services or ports, standing
-  up test infrastructure, or otherwise changing machine state on a realm host (`ai`, `ai2`, `gtr`,
+  up test infrastructure, starting a resource-heavy workload (large model load, video generation,
+  load test — check Claims for live reservations first), or otherwise changing machine state on a
+  realm host (`ai`, `ai2`, `gtr`,
   and any future server) goes through the Ops Agent persona (`agents/ops.md`): read the host's
   realm ledger before touching, write the ledger with the change, honour the authorization tiers.
   Technology stances (preferred / anti-preferred / container-only / forbidden-on-host) and fleet

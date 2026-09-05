@@ -79,6 +79,17 @@ Weigh severity & scope and reversibility, per the workflow's pause-on-risk direc
 4. Ledger entry only if something changed (new image cached, version bumped, cluster left
    standing — the last also needs a claim row and is Tier B).
 
+### Soft-reserve a host or resource
+
+1. Read the host's ledger Claims; if a live reservation or standing claim conflicts, defer or ask —
+   do not stack conflicting reservations.
+2. Add a **RESERVED** row: who (project/WI), what (narrowest sufficient resource; whole host only
+   when interference would *invalidate* the work, e.g. load testing), **until** (timestamp or
+   completion condition — mandatory), note. Commit.
+3. Do the work. Extend the until *before* it lapses if needed.
+4. Remove the row (or mark released) + change-log entry; commit. A reservation past its until is
+   void — any session may clear it with a log entry.
+
 ### Install a tool on a realm host
 
 1. Read the host's ledger; check Fragilities (e.g. never ROCm DKMS on ai2) and whether the tool
