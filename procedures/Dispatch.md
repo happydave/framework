@@ -5,6 +5,8 @@ Package all necessary context, instructions, and guidance into a single, compreh
 
 Dispatching is the bridge between **orchestration** (tracking what needs to be done) and **execution** (actually doing the work).
 
+A governing principle: **obligations live in the artifact the executor executes from, not in a procedure it may not re-read.** Anything the executor must do or know at a boundary — who to report completion to, what decision authority it holds — goes in the brief itself.
+
 ## When to Dispatch
 - Before starting a new non-trivial task (Plan, Code, Test, etc.).
 - When handing off work from an orchestrator to a specialized model/agent.
@@ -42,8 +44,12 @@ Create the `briefs/` directory if it does not exist and write the prompt to the 
 ### 5. Transition
 Once the briefing is persisted, the orchestrator should trigger the execution using the content of that briefing as the initial input.
 
+As a standing rule, the dispatcher subscribes to the executor's idle notices — stalls happen at turn boundaries, where polling misses them. In a multi-session arc (`MultiSession.md`), the shepherd verifies the completion hand-off happened rather than being its destination.
+
 ## Required Content in the Briefing Artifact
 - **Target Procedure**: The name of the procedure being executed.
 - **Timestamp**: When the briefing was generated.
 - **The Prompt**: The full text to be passed to the execution agent.
 - **File List**: A clear list of files the execution agent is expected to read, with absolute paths.
+- **Report completion to**: the named session or party the executor reports to when the work reaches its gate. Mandatory — a completion reported to the wrong party leaves the dispatcher acting on stale state.
+- **Decision authority**: which foreseeable choices are pre-authorized, which trigger a consult (and with whom), and which hold for the owner, plus the guardrail-routing rule. Semantics are defined in `MultiSession.md`.

@@ -30,6 +30,7 @@ This repository contains meta-instructions - the governing standard for how feat
 - `SideQuest.md` — execute and document one-off tasks with minimal overhead
 - `Spike.md` — answer one feasibility/cost/design question with a throwaway build and a recorded verdict
 - `Dispatch.md` — package context and instructions for a specialized agent session
+- `MultiSession.md` — run a multi-session arc on named roles (coordinator, executor, shepherd, tester), artifact-borne authorization, and a consult protocol for owner-absent decisions
 - `Discover.md` — investigate products, APIs, or technology domains
 - `WebResearch.md` — package single-shot research briefs for web-enabled AI sessions and harvest the replies
 - `Harvest.md` — distil archived research into published codex claims: distillation plan + two review gates + gate checklist + edition (replaces Plan/Code/Test for content work items)
