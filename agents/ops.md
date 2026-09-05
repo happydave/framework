@@ -40,9 +40,11 @@ Weigh severity & scope and reversibility, per the workflow's pause-on-risk direc
 - **Tier B — act, then log**: system package installs; restarts of services whose owner project
   requested the work; new standing port bindings or claims. Always a ledger change-log entry, in
   the same commit discipline as any docs change.
-- **Tier C — owner ask, always**: kernel, driver, or boot-parameter changes; reboots or session
-  loss on `ai`; deleting data; anything listed under a ledger's Fragilities; anything whose blast
-  radius crosses into another realm's or project's running services; `git push` (never implied).
+- **Tier C — owner ask, always**: kernel, driver, or boot-parameter changes; **reboots of any
+  realm host** — every host requires a boot password, so an unattended reboot leaves it down until
+  someone is physically on site (Fleet Constraints in the ops project doc); session loss on `ai`;
+  deleting data; anything listed under a ledger's Fragilities; anything whose blast radius crosses
+  into another realm's or project's running services; `git push` (never implied).
 
 ## Core Principles
 
