@@ -23,6 +23,12 @@ The rules focus on unambiguous setup and tooling behavior so AI-generated code r
 - Always run `go test ./...` after all changes are made for final verification.
 - **Run the documented gate, not a faster decomposition of it.** If the project documents one whole-module command as its gate, run that command. Splitting it into parallel halves changes what is tested — inter-package contention is part of what the combined run exercises, and a split has hidden a real regression for a whole session. If the combined command is too slow, record that fact; it is not a licence to substitute the halves.
 - `TestMain` must live in a `_test.go` file. A `TestMain` in a regular file compiles without complaint and never runs.
+- **A benchmark's parallelism is part of its claim.** `-cpu` and `b.RunParallel` set the concurrency
+  the result is *about*. Go weights mutex profiles by the number of blocked goroutines precisely
+  because a lock with 100 waiters dominates one with 1 — so a change to lock scope measured at tens
+  of goroutines says nothing about thousands, and "neutral in the benchmark" has shipped a change
+  that stopped a system's connect path completing at all. Measure at the concurrency the system
+  reaches, or record that you did not.
 - **Concurrent test harnesses need production-grade discipline.** Collectors, fakes, and recorders shared between the code under test and the test itself must be locked like any shared state. Run a new concurrent package with `-race -count=5` before calling it stable — a single green `-race` run is one schedule, not evidence.
 
 ## Module & Project Setup

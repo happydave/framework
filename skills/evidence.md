@@ -50,6 +50,13 @@ document, paper, or vendor — check that the original task matches the task at 
   of known text**, where a mis-heard word costs one token rather than a wrong output.
 - A benchmark on one model tier, hardware, resolution, or input distribution is not a measurement of
   another.
+- **Scale and concurrency are part of the task, not knobs around it.** A benchmark at 32 goroutines
+  is not evidence about 50,000, and a result at one client count says nothing about another two
+  orders of magnitude away. Contention in particular is not linear in waiters: a lock a benchmark
+  finds free can be the one that stops a system dead when the crowd arrives, because the structure
+  being removed was metering how many arrivals reached the next lock. Before trusting a measurement
+  to license a change, ask what concurrency and what scale the *system* runs at, and say plainly
+  whether the measurement reached it.
 
 A precise number applied to the wrong task is more dangerous than vagueness: it looks authoritative and
 propagates silently. When a claim is inherited across a task boundary, label it **Hypothesis** until
