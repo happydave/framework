@@ -45,6 +45,14 @@ The Code and Complete actions use these tags to know which outcomes the agent ca
 
 Choosing `[human]` when `[agent]` would do is a real failure mode: it defers to the owner a check the agent could have run, and it lets a result that *looks* right on automated metrics pass without anyone inspecting the artifact. If you can look at the thing, tag it `[agent]` and look.
 
+Certain feature shapes have repeatedly produced interleaving or coverage gaps that surfaced only at implementation. When the feature includes one of these, the plan must pin the detail explicitly:
+
+- **An authentication default** — include one scenario per credential kind the system accepts (password, certificate, token, …), not just the default path.
+- **A server-initiated message triggered by a client request** (a retained message on subscribe, a replay on connect) — state its order relative to the acknowledgement of the request that triggered it.
+- **A replicated-state change** — say which node acts on apply and which acts on the proposer's result, and in what order those may interleave; defects live in the interleavings a plan does not name.
+- **A shared identifier** (a key, a code, a name format used by more than one component) — state its exact form and which package owns it.
+- **A gate command that includes a test-binary flag** — name the exact package path, not a `./...` pattern; other test binaries in the tree reject the flag.
+
 **Migration note.** The prior two-way scheme used `[visual/manual]` for everything non-automated. An existing `[visual/manual]` tag should be read as `[human]` by default (the conservative reading); re-triage it to `[agent]` opportunistically when the check is in fact one the agent can perform by inspection.
 Example:
 - SHALL allow new users to register with a valid email and strong password, then send a time-limited verification link.
@@ -133,6 +141,20 @@ The planning process MUST identify all applicable guidelines and document them i
 
 - Cross-feature dependencies and ordering principles are introduced when they become ambiguity sources; these may be deferred if not genuinely necessary for understanding individual features
 
+### Measurements and Property Harnesses
+
+When the work item includes a measurement (a benchmark, a scale run, a resource envelope), the plan requires:
+
+- **Run it early.** The measurement runs once at a nominal scale as soon as it compiles, not at the end. A measurement that first executes on the final day discovers its harness bugs on the final day.
+- **Assert starting conditions.** The measurement checks the preconditions it depends on (a settled machine, available ports, an empty data directory) and refuses to run when they do not hold, naming what it saw — rather than assuming them and producing a number that looks like a finding.
+
+When the work item builds a harness that checks properties (invariants over runs, simulation checks), the plan additionally requires:
+
+- **Violations carry evidence.** Each reported violation includes the state of the participants at the moment it happened, not only the fact of the violation. A one-line verdict forces a re-run with hand-added tracing for every diagnosis.
+- **Exemptions expire.** An allowance carved out of a property names the work item that will remove it, and the suite reports how many times it fired. A silent exemption is load-bearing scope no one is tracking.
+- **Properties state their non-vacuity.** For each property, say what makes it non-vacuous and assert that too (e.g., a run must actually deliver and acknowledge something). A property that passes over an idle system verifies nothing.
+- **The harness's own client is tested.** The harness speaks a protocol; test its client against the same specification the product is judged by. When the harness reports a defect, the harness is one of the suspects.
+
 ## Planning Workflow
 
 **Product**: Feature plan (`plan.md` in the work item's folder)
@@ -149,7 +171,7 @@ These are not sequential phases — they are aspects of planning that apply thro
 
 **Open-and-verify** — a standing discipline within Research & Elaborate, checked again at Critically Assess: every concrete factual claim about existing code, content, or data must trace to a file opened during this planning session. This governs survey findings, required behaviors, and scenarios — if the plan asserts what a function returns, what a data file contains, which comment pins a value, or what a scenario will observe from shipped content, open that artifact and confirm the assertion before writing it down.
 
-Recall and pattern-matching are a starting point, never the last step before a claim lands in the plan. A remembered fact is a hypothesis; an opened file is a finding. Claims about artifacts that do not yet exist are exempt — nothing can be opened — so this rule binds assertions about what is already there, which is precisely where a confident-but-stale memory does its damage. Apply `skills/evidence.md` to survey claims: label them by confidence, and treat a number inherited from another document, task, or measurement as a Hypothesis until it is confirmed for *this* task (a result measured for one task does not automatically bound a different task that resembles it).
+Recall and pattern-matching are a starting point, never the last step before a claim lands in the plan. A remembered fact is a hypothesis; an opened file is a finding. Match the verification to the claim's scope: when the plan asserts a file is *free of* something (a string, a licence header, a dependency), the check is a search over the whole file, not a read of its head — absence claims are only as good as the coverage of the look. Claims about artifacts that do not yet exist are exempt — nothing can be opened — so this rule binds assertions about what is already there, which is precisely where a confident-but-stale memory does its damage. Apply `skills/evidence.md` to survey claims: label them by confidence, and treat a number inherited from another document, task, or measurement as a Hypothesis until it is confirmed for *this* task (a result measured for one task does not automatically bound a different task that resembles it).
 
 **Test (Descriptive)** — describe validation approaches: expected behaviors, failure modes, edge case scenarios, and thought experiments that confirm the plan is sound. No code or tests written — this is descriptive verification of the plan itself.
 

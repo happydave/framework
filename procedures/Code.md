@@ -52,7 +52,7 @@ Populate each section as work progresses:
   | -------------------- | ------ | ----- |
   | \<criterion from workitem\> | [ ] | |
 
-Keep entries concise and factual. The log must be sufficient for another session to continue if interrupted.
+Keep entries concise and factual. The log must be sufficient for another session to continue if interrupted. On long work items, a **Not Yet Verified** section — claims made but not yet backed by a run — is worth more to the next session than another paragraph of what was done; move items out of it as they are verified.
 
 ### 4. Implement Incrementally
 
@@ -64,6 +64,11 @@ Implement changes (other than infrastructure and scaffolding) in the order speci
 2. Test to verify correctness
 3. Fix any errors before moving to the next change
 4. **Update `code.md` — log what was done, any decisions taken, and current state**
+
+Two disciplines within this loop:
+
+- **Restate structural constraints before writing.** When the plan constrains a component structurally (locking rules, goroutine ownership, allocation budgets), restate those constraints at the top of the implementation log entry before writing the code, and check them off as the code satisfies them. A constraint held in mind while writing is a constraint that drifts.
+- **A negative control must be seen to fail.** A test written to prove that a defect *would* be caught is not done when it compiles — it is done when it has been run and observed to fail for the stated reason. A negative control that has never failed proves nothing about the detector.
 
 A change is not complete until both the code changes AND the corresponding `code.md` entry are done. Do not batch multiple changes before updating the log. Incremental documentation serves two purposes: it enables session continuity if interrupted (the log is the handoff artifact for the next session), and it forces you to verify each step before moving on. Avoid batching changes then compiling once at the end — incremental verification catches errors early, reduces rework, and produces a reliable audit trail.
 

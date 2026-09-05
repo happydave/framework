@@ -51,6 +51,8 @@ Per `skills/evidence.md`, agents are prone to finding what they expect.
     -   The agent is stuck in a loop of 3+ unsuccessful attempts at the same bug.
 -   **Verification Gate**: For any finding labeled **Confirmed**, the agent must provide a "Before" and "After" log snippet or screenshot link showing the transition from failure to success.
 -   **Recall is not evidence**: A claim about an artifact's contents — what a function returns, what a config file sets, what a document says — is verified by opening the artifact, not by recollection. A remembered fact is a hypothesis; an opened file is a finding. This bias is strongest where the agent is *most* fluent, because a familiar pattern supplies a plausible answer without the artifact ever being read. `Plan.md` states this as the **Open-and-verify** rule for planning; it applies equally to any claim an agent makes about code it has not just read.
+-   **The measuring instrument is a hypothesis too**: When a test or harness reports a defect, the correctness of the test itself is one of the hypotheses — ranked by how recently the instrument was written, not left until last. A freshly written check that reports a product defect is, on priors, about as likely to be reporting its own.
+-   **Read the library before writing a rule about it**: When a fix or invariant depends on a third-party library's semantics (what a field means, when a callback fires), read the library's code for that path before committing to the rule. The relevant function is often a dozen lines; two plausible-sounding rules built on a misremembered field have each cost a debugging round.
 
 ## 4. Self-Refinement Loop (Self-Refine)
 
@@ -86,6 +88,7 @@ Using internal telemetry to understand behavior.
 1.  **Instrumentation First**: Add spans, logs, or attributes *before* trying to fix the bug if current data is insufficient.
 2.  **High Cardinality Search**: Filter by specific IDs (request ID, user ID) to see the exact path of a failing transaction.
 3.  **Compare Traces**: Look at a "good" trace vs. a "bad" trace to identify the divergence point.
+4.  **Price the probe before taking it**: Deep inspection of a process under load perturbs what it measures. Before a goroutine/thread dump of a process at scale, estimate the stop-the-world cost (population × per-frame cost) and decide whether the dump is worth contaminating the run; prefer a dump from a control run, or after the measurement window closes, when the number under measurement is a timing. (Go: a full-stack dump of hundreds of thousands of goroutines stops the world for over a minute, and `pprof` truncates `debug=2` output at 64 MiB.)
 
 ## 5. Surprise Analysis & Assumption Proofing
 

@@ -110,6 +110,7 @@ The findings summary from step 4 is written to `codereview.md` in the work item 
 ## Guidance
 
 - The plan is the primary evaluation standard. A change that works but doesn't match the plan is a finding; a plan gap discovered during review should be noted in `code.md`.
+- A finding accepted from a reviewer is still a change: it is applied and then verified by the same gates as any other change, not exempted because it arrived with a reviewer's endorsement. Where the reviewer proposes a *fix* rather than reporting a defect, the fix carries the author's burden of proof — including measuring its cost when it touches a failure path.
 - Default to action. Software can be rewritten and git provides a rollback path — the cost of a recoverable wrong decision is almost always lower than the cost of stopping unnecessarily.
 - Escalate sparingly. Escalation is for decisions where recovery would be expensive or impossible: security holes, data loss, broken external contracts, significant unplanned scope. Everything else is low risk by default.
 - Distinguish escalations from observations clearly. Treating every finding as a stop trains reviewers to ignore findings; burying real escalations in observations leads to proceeding with unresolved high-risk decisions.

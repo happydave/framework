@@ -54,6 +54,9 @@ When consolidating overlapping lists or sections from two or more documents into
 
 This is a hard gate for any change that merges document content: the merge is complete when every source item is accounted for.
 
+## Build Procedures — Scripted Multi-Substitution Edits
+When patching a document with a script that applies multiple substitutions (several anchors in one pass), one failing anchor must not silently discard the rest. Either write the file after each successful substitution, or verify every anchor matches before applying any. Anchors drift — gofmt realigns them, concurrent sessions rewrite them — and a half-applied patch that reports success has caused repeated rework. When any anchor fails, re-read the current text before retrying.
+
 ## Test Procedures — Spell Checking
 Spell checking is recommended as an advisory quality signal to help catch typos in technical terminology where dictionary coverage may be limited.
 

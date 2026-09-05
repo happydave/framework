@@ -61,6 +61,6 @@ All findings in `test.md` must be addressed:
 
 ## Guidance
 
-- **Negative Testing**: Always include test cases for invalid input, error states, and boundary conditions.
+- **Negative Testing**: Always include test cases for invalid input, error states, and boundary conditions. When a test asserts that a disabled or detached component receives *nothing*, precede the assertion with a wait for the last event that was expected to arrive — otherwise the assertion can pass simply because it ran before anything was delivered.
 - **Evidence-Based**: Where possible, include logs, screenshots, or command output in `test.md`. Apply `skills/evidence.md`: report each result at the confidence the evidence supports, and remember that passing automated metrics does not verify a result until the artifact behind it is examined (a build that produces a file with the right shape can still produce the wrong file).
 - **No Guesswork**: If it's unclear how to test a specific component, refer back to the `Discover` procedure or ask the user for clarification.

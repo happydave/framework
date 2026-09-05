@@ -66,6 +66,25 @@ still loading, "the queue is wedged, restart it" when the interrupt was merely s
 The correct move while a run is live is to keep observing and to say explicitly that the run is still
 in progress — never to convert a symptom into a settled cause.
 
+### State the Sample a Claim Rests On
+A claim about frequency or a fix carries its run count in the same sentence. "The failure is
+intermittent" means nothing; "2 failures in 6 runs" is a finding. A claim that a change *fixed* a
+flaky failure needs enough runs that the old failure rate would have shown itself — and where the
+counts alone are weak (2-of-6 versus 0-of-6 is p ≈ 0.2 on its own), say whether the attribution
+rests on the counts or on the mechanism. This rule has been re-learned in three separate work items;
+apply it before publishing, not after being asked.
+
+### A Gate's Exit Status and Its Completeness Are Separate Questions
+A green gate is only evidence if the gate actually ran to completion over everything it claims to
+cover. A timeout, a skip, or a package that never reported is not a pass, and a zero count from an
+incomplete run is not a zero. Confirm completeness explicitly — for Go, a package that prints no
+`ok` line has no result, whatever the exit status suggests.
+
+### Baseline the Unchanged Build Before Calling It a Regression
+A surprising number from a changed build is compared against the unchanged build, on the same
+machine, before it is attributed to anything. Without that control run, "the change made it worse"
+and "it was always this bad" are indistinguishable — and both mistakes have been published.
+
 ### "Nothing Found" Is a Valid Output
 Resist the temptation to produce a "root cause" or a positive result without evidence. Documenting what
 was checked and found to be normal — or that an approach did **not** work, and why — is a real result.
