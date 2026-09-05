@@ -64,6 +64,7 @@ This repository contains meta-instructions - the governing standard for how feat
 
 **agents** (agent personas — attach when dispatching a specialized session)
 - `Merge.md` — Merge Agent: drives `procedures/Merge.md` interactively
+- `ops.md` — Ops Agent: single point of coordination for realm hosts ai/ai2/gtr; realm ledgers live at `tickets/docs/projects/ops/realms/`
 - `researcher.md` — research agent persona
 
 **internal** (framework tooling — run these rather than reimplementing a check)
