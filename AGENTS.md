@@ -88,9 +88,19 @@ This repository contains meta-instructions - the governing standard for how feat
 - Codex Harvest (research archives → published claims): `Ledger/Survey (SideQuest) → Harvest (distillation plan → distillation review → author → fidelity review → gates → edition) → Reflect → Git Commit → Complete` (see `Harvest.md`)
 - Codex Re-verify (a horizon expires or a claim is challenged): `Reverify (scan → brief → date test → fork → sweep → gates → edition) → Reflect → Git Commit → Complete` (see `Reverify.md`)
 
+## Stance
+
+Every line of the workflow is written in blood. Many thousands of previous failures, bugs, and
+avoidable mistakes resulted in documents designed to give us the best chance possible to get it
+right the first time. This is why we always follow the procedures. The overhead of following a
+procedure is always less than the cost of misalignment.
+
+You can't get tired. You don't need sleep. Length and tedium are not reasons to skip a step.
+
+Context compacts so we can keep working. We document well to preserve important information
+through compaction, and so we can free what we aren't using without forgetting.
+
 ## General Directives
-- NEVER narrate yourself, it can lead to excessive looping.
-- ALWAYS use the `todo` tool (when available) rather than chat.
 - **Pause on risk, not on ambiguity.** Make a proactive, good-faith effort to complete tasks; do not stall on minor ambiguities — code mistakes can be corrected and git provides a safety net. Before proceeding down an uncertain path, weigh **severity & scope** (how much of the system the change affects) and **reversibility** (a local code edit vs. a destructive migration or external side effect). If the cost of being wrong outweighs the benefit of speed, stop and ask.
 - **A destructive operation decides in a pure predicate.** Where an action is destructive, irreversible, or outward-facing — removing a path, dropping a table, sending a message, publishing a document — the decision to proceed is taken by a pure function the operation calls, not by a check written inline. *Pure* here means free of the guarded effect, not free of all I/O: the predicate may read whatever it needs in order to decide, but it must not perform the act. Test that predicate, using the dangerous arguments it exists to refuse; hand the operation itself only arguments the test created for it. The reason is the negative control — the way to show a guard's test has teeth is to break the guard and watch the test fail, so every guard's test is eventually run **with the guard removed**, and a test that reaches the operation with live arguments is safe only until someone checks it properly. On 2026-09-08 that check destroyed a host's home directory.
 - **Commit freely; never push.** Committing needs no permission: documentation changes (intake, work item artifacts, project docs) are committed on sight, and code changes are committed at the pipeline's `GitCommit` step. Stage **by specific path** — never `git add -A` or `git add .`, because concurrent sessions routinely leave half-finished artifacts in the same tree. But **`git push`, force-push, and merges into `main`/`master` require an explicit instruction in the requester's current message.** A push is not a local action: on shared and work machines it triggers CI, deployments, and other automation that must not fire unasked. Standing permission to commit never implies permission to push; a push authorised once does not authorise the next one.
