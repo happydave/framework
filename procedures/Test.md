@@ -38,7 +38,21 @@ Gather testing instructions from the sources identified in the **Input & Guidanc
 
 Run the identified test suites and perform manual verification. If any steps require human intervention (e.g., UI verification, hardware interaction), the AI agent must explicitly ask the user to perform these steps and report the results.
 
-### 3. Produce `test.md`
+### 3. Run the Negative Controls
+
+A test that passes against a deliberately broken implementation is not evidence. For each behavior the plan specifies in its **Required Behaviors & Verifications**, remove or invert that behavior and confirm the intended tests fail — and that they fail on the cases that target it. The scope is the plan's behaviors: not every new test, and not every line of the change. Before breaking anything, read the next paragraph — it constrains which behaviors may be checked this way at all.
+
+**Before breaking anything, check what the behavior guards.** Where it guards a destructive, irreversible, or outward-facing operation, run the control against the predicate that decides, never by driving the operation itself — see *A destructive operation decides in a pure predicate* in `AGENTS.md`. Where the decision is not separable from the act, do not run the control: the non-separability is itself the finding, and the restructuring comes first. A control is run *with the guard removed*, so a control that reaches the operation performs it.
+
+The shape this asks for is small. In hoardmq's failover driver, `validateStoreRoot` decides — it inspects a path and touches nothing — `removeStore` calls it before `os.RemoveAll`, and the guard's test asserts on `validateStoreRoot`, passing it `/`, `/etc` and the home directory precisely because a predicate cannot act on them. A second test hands `removeStore` only a directory it created itself. Breaking that guard fails the test and removes nothing; that was verified by running exactly this control. An earlier version of the same guard was written inline and tested by calling the remover with those same arguments — running the identical check against it destroyed a host's home directory.
+
+Which cases fail matters as much as that something failed. A mutation that breaks more cases than expected, or fewer, has located a gap. In md-mcp WI 1169 a mutation passed the entire suite and revealed that the invariant the plan had singled out as the subtle one had no test at all — every other case was byte-identical either way, so the assertions that appeared to cover it did not.
+
+Record the result in `test.md` as a table of the break, the test, and the failure observed. Where a control could not be run — a behavior that will not compile once removed, or an operation whose decision is not separable — name the behavior and the reason. An omitted control must not be indistinguishable from one that passed.
+
+This is `skills/evidence.md`'s "actively seek contradictory evidence" applied to the suite itself: a control that *should* fail is what distinguishes a test with teeth from a test that agrees with whatever it is given.
+
+### 4. Produce `test.md`
 
 Document the testing process and results in a `test.md` file within the work item folder.
 
@@ -46,9 +60,10 @@ Document the testing process and results in a `test.md` file within the work ite
 - **Test Summary**: High-level pass/fail status and summary of coverage.
 - **Automated Results**: Output or summary of test suite executions.
 - **Manual Verification**: Description of manual steps taken and their outcomes.
+- **Negative Controls**: the table of breaks run, the tests they broke, and the failures observed — or, where none were run, which behaviors went uncontrolled and why.
 - **Findings**: A clearly enumerated list of all problems found.
 
-### 4. Handle Findings
+### 5. Handle Findings
 
 All findings in `test.md` must be addressed:
 
@@ -61,6 +76,6 @@ All findings in `test.md` must be addressed:
 
 ## Guidance
 
-- **Negative Testing**: Always include test cases for invalid input, error states, and boundary conditions. When a test asserts that a disabled or detached component receives *nothing*, precede the assertion with a wait for the last event that was expected to arrive — otherwise the assertion can pass simply because it ran before anything was delivered.
+- **Negative Testing**: Always include test cases for invalid input, error states, and boundary conditions. **An assertion of absence must first establish the presence it qualifies** — a test that is satisfied when the thing it guards never happens at all passes while proving nothing. Assert that the value reaches the output, then assert how it appears there. This matters most for escaping, injection, redaction, and secret-scanning checks, where a vacuous test reads as security coverage: raji-local-mcp's reflected-input test asserts the hostile value is echoed at all *before* asserting that it is echoed escaped, and says so in a comment. The timing case is the same rule — when a test asserts that a disabled or detached component receives *nothing*, precede the assertion with a wait for the last event that was expected to arrive, otherwise the assertion can pass simply because it ran before anything was delivered. The converse shape is a content scan, which is scoped to the artifact's code rather than its prose, so a check cannot trip on documentation of itself.
 - **Evidence-Based**: Where possible, include logs, screenshots, or command output in `test.md`. Apply `skills/evidence.md`: report each result at the confidence the evidence supports, and remember that passing automated metrics does not verify a result until the artifact behind it is examined (a build that produces a file with the right shape can still produce the wrong file).
 - **No Guesswork**: If it's unclear how to test a specific component, refer back to the `Discover` procedure or ask the user for clarification.

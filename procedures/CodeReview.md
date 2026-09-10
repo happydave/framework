@@ -57,11 +57,11 @@ Assess all substantive changes across these dimensions:
 
 **Correctness** — does the implementation match what the plan specifies? Check requirements, invariants, and acceptance criteria explicitly. Note any gaps between what was planned and what was built. Per `skills/evidence.md`, do not accept a passing metric as proof a result is correct: where a criterion produces an artifact (a rendered output, a generated file, a document), the review is not complete until that artifact has been examined, not just its summary counts. An `[agent]`-tagged criterion (see `Plan.md`) is one the review is expected to verify this way.
 
-**Safety** — does the change introduce risk? Consider: security vulnerabilities, data loss scenarios, race conditions, inconsistent state, irreversible side effects.
+**Safety** — does the change introduce risk? Consider: security vulnerabilities, data loss scenarios, race conditions, inconsistent state, irreversible side effects. Where an operation is destructive, irreversible, or outward-facing, check that the decision to proceed is separable from the act — a pure predicate the operation calls, per the directive in `AGENTS.md`.
 
 **Clarity** — is the code readable and maintainable? Naming, structure, and whether a future reader would understand the intent without needing to ask the author.
 
-**Tests** — are new behaviors covered? Are existing tests still meaningful? Absence of tests for plan-specified behaviors is a blocking finding.
+**Tests** — are new behaviors covered? Are existing tests still meaningful? Absence of tests for plan-specified behaviors is a blocking finding. An assertion of absence must establish the presence it qualifies, and a guard's test must assert on the predicate rather than on the operation it guards — see `Test.md`, *Negative Testing* and *Run the Negative Controls*.
 
 **Scope** — does the change stay within what the plan specifies? Unrelated or opportunistic changes should be flagged.
 
